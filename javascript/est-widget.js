@@ -28,32 +28,20 @@
 
     function main() {
         jQuery(document).ready(function ($) {
-            var css_link = $("<link>", {
-                rel: "stylesheet",
-                type: "text/css",
-                href: "style.css"
-            });
-            css_link.appendTo('head');
-
-            var html_url = "http://localhost:63342/est-ui-widget/container.html"; // used rubymine default Nginx.
-
-            $.ajax({
-                success: function (data, textStatus, jqXHR) {
-                    $('#est-widget-container').html(data);
-                    $('#est-widget-search').on('click', function (e) {
-                        estLoadData($('#est-query').val());
-                    });
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-
-                },
-                url: html_url
+            $('#est-widget-container').html(
+                '<input type="text" id="est-query">' +
+                '<input type="button" id="est-widget-search" value="search">' +
+                '<div id="est-widget-result"></div>'
+            );
+            $('#est-widget-search').on('click', function (e) {
+                estLoadData($('#est-query').val());
             });
 
-            var estURL = "https://api.govwizely.com/environmental_solutions/search?q=";
+            var estURL = "https://api.govwizely.com/environmental_solutions/search";
 
             function estLoadData(search) {
-                $.getJSON(estURL + search, function (data) {
+                var queryString = search ? '?q='+search : '';
+                $.getJSON(estURL + queryString, function (data) {
                     $('#est-widget-result').html(JSON.stringify(data));
                 });
             }
