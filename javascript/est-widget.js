@@ -28,24 +28,32 @@
 
     function main() {
         jQuery(document).ready(function ($) {
-            $('#est-widget-container').html(
-                '<input type="text" id="est-query">' +
-                '<input type="button" id="est-widget-search" value="search">' +
-                '<div id="est-widget-result"></div>'
-            );
-            $('#est-widget-search').on('click', function (e) {
-                estLoadData($('#est-query').val());
-            });
+            var apiKey, widgetElementId;
+            $.fn.est_widgetize = function (options) {
+                apiKey = options['api_key'];
+                widgetElementId = $(this).attr('id');
 
-            var estURL = "https://api.govwizely.com/environmental_solutions/search";
+                $('#' + widgetElementId).html(
+                    '<input type="text" id="est-query">' +
+                    '<input type="button" id="est-widget-search" value="search">' +
+                    '<div id="est-widget-result"></div>'
+                );
 
-            function estLoadData(search) {
-                var queryString = search ? '?q='+search : '';
-                $.getJSON(estURL + queryString, function (data) {
-                    $('#est-widget-result').html(JSON.stringify(data));
+                $('#est-widget-search').on('click', function (e) {
+                    estLoadData($('#est-query').val());
                 });
-            }
+
+                var estURL = "https://api.govwizely.com/environmental_solutions/search";
+
+                function estLoadData(search) {
+                    var queryString = search ? '?q=' + search : '';
+                    $.getJSON(estURL + queryString, function (data) {
+                        $('#est-widget-result').html(JSON.stringify(data));
+                    });
+                }
+
+                return this;
+            };
         });
     }
 })();
-

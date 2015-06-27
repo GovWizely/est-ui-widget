@@ -3,9 +3,20 @@
   <head>
     <title>EST UI Widget</title>
     <link rel="stylesheet" type="text/css" href="style.css">
-    <script type="text/javascript" src="javascript/est-widget.js"></script>
+
+      <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+      <script type="text/javascript" src="javascript/est-widget.js"></script>
+      <script>
+          $(document).ready(function ($) {
+              $("#test-widget-id").est_widgetize({
+                  api_key: "a1s2d3f4g5h6j7k8l9"
+              });
+          });
+      </script>
   </head>
   <body>
-    <div id="est-widget-container"></div>
+    <div id="test-widget-id"></div>
   </body>
+
+
 </html>
