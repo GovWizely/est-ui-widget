@@ -28,10 +28,9 @@
 
     function main() {
         jQuery(document).ready(function ($) {
-            var apiKey, widgetElementId;
             $.fn.est_widgetize = function (options) {
-                apiKey = options['api_key'];
-                widgetElementId = $(this).attr('id');
+                var apiKey = options['api_key'];
+                var widgetElementId = $(this).attr('id');
 
                 $('#' + widgetElementId).html(
                     '<input type="text" id="est-query">' +
@@ -43,16 +42,19 @@
                     estLoadData($('#est-query').val());
                 });
 
-                var estURL = "https://api.govwizely.com/environmental_solutions/search";
+                var estURL = "https://api.govwizely.com/v2/environmental_solutions/search";
 
                 function estLoadData(search) {
-                    var queryString = search ? '?q=' + search : '';
-                    $.getJSON(estURL + queryString, function (data) {
+                    $.getJSON(composeURL(search), function (data) {
                         $('#est-widget-result').html(JSON.stringify(data));
                     });
                 }
 
-                return this;
+                function composeURL(search) {
+                    return estURL + '?api_key=' + apiKey + '&q=' + search
+                }
+
+                return this; // Chaining
             };
         });
     }
