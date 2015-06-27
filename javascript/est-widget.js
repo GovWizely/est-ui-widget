@@ -35,7 +35,7 @@
                 $('#' + widgetElementId).html(
                     '<input type="text" id="est-query">' +
                     '<input type="button" id="est-widget-search" value="search">' +
-                    '<div id="est-widget-result"></div>'
+                    '<pre id="est-widget-result"></pre>'
                 );
 
                 $('#est-widget-search').on('click', function (e) {
@@ -46,12 +46,34 @@
 
                 function estLoadData(search) {
                     $.getJSON(composeURL(search), function (data) {
-                        $('#est-widget-result').html(JSON.stringify(data));
+                        $('#est-widget-result').html(syntaxHighlight(data));
                     });
                 }
 
                 function composeURL(search) {
                     return estURL + '?api_key=' + apiKey + '&q=' + search
+                }
+
+                function syntaxHighlight(json) {
+                    if (typeof json != 'string') {
+                        json = JSON.stringify(json, undefined, 2);
+                    }
+                    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+                    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
+                        var cls = 'est-widget-number';
+                        if (/^"/.test(match)) {
+                            if (/:$/.test(match)) {
+                                cls = 'est-widget-key';
+                            } else {
+                                cls = 'est-widget-string';
+                            }
+                        } else if (/true|false/.test(match)) {
+                            cls = 'est-widget-boolean';
+                        } else if (/null/.test(match)) {
+                            cls = 'est-widget-null';
+                        }
+                        return '<span class="' + cls + '">' + match + '</span>';
+                    });
                 }
 
                 return this; // Chaining

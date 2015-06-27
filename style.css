@@ -1,0 +1,6 @@
+#est-widget-result pre  {outline: 1px solid #ccc; padding: 5px; margin: 5px; }
+.est-widget-string { color: green; }
+.est-widget-number { color: darkorange; }
+.est-widget-boolean { color: blue; }
+.est-widget-null { color: magenta; }
+.est-widget-key { color: red; }
