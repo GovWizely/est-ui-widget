@@ -51,7 +51,9 @@
                 }
 
                 function composeURL(search) {
-                    return estURL + '?api_key=' + apiKey + '&q=' + search
+                    var url = estURL + '?api_key=' + apiKey;
+                    url = (search === undefined || search == '') ? url : url + '&q=' + search
+                    return url
                 }
 
                 function syntaxHighlight(json) {
