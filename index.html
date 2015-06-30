@@ -11,7 +11,15 @@
 
     <!-- Widget resources: -->
     <link rel="stylesheet" type="text/css" href="est-ui-widget/style.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script type="text/javascript" src="est-ui-widget/index.js"></script>
+    <script>
+      $(document).ready(function ($) {
+        $("#est-example-widget-container").est_widgetize({
+          api_key: "9O6c9MpQj5Ot7mvRwaGmYiEL"
+        });
+      });
+    </script>
 
   </head>
   <body>
@@ -25,19 +33,30 @@
 
     <section class="main-content">
       <h2>See the EST UI widget in action:</h2>
-      <div id="est-widget-container"></div>
+      <div id="est-example-widget-container"></div>
       <br/><br/><br/>
 
       <h2>Add the EST UI widget to your web page:</h2>
       <ol>
         <li>Grab the <a href="linktosourcefiles">source files</a>.</li>
+        <li>Make sure you have jQuery:
+        <pre><code>
+&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
+        </code></pre></li>
         <li>Add the following to your page's <code>&lt;head&gt;</code>:
           <pre><code>
 &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;est-ui-widget/style.css&quot;&gt;
 &lt;script type=&quot;text/javascript&quot; src=&quot;est-ui-widget/index.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+    $(document).ready(function ($) {
+         $(&quot;#est-example-widget-container&quot;).est_widgetize({
+               api_key: &quot;Your API key&quot; // get it from http://api.trade.gov/
+         });
+    });
+&lt;/script&gt;
           </code></pre>
         </li>
-        <li>Add <code>&lt;div id=&quot;est-widget-container&quot;&gt;&lt;/div&gt;</code> to wherever you wish the widget to appear.</li>
+        <li>Add <code>&lt;div id=&quot;est-example-widget-container&quot;&gt;&lt;/div&gt;</code> to wherever you wish the widget to appear.</li>
       </ol>
 
 
