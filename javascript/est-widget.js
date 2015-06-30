@@ -57,28 +57,28 @@
                 $.estStyleResults = function (mydata) {
                     var table = $('<ul>');
                     $.each(mydata['results'], function (index, value) {
-                        var resultId = ('source-id-' + value['source_id']).replace(/\W/g,'-');
-                        var collapsible = $('<a />', {
-                            text:  resultId,          // jQuery text() is called,
-                            href: '#'
+                        var resultId = ('source-id-' + value['source_id']).replace(/\W/g, '-');
+                        var collapsible = $('<a>').text(resultId).attr('href', '#');
+                        var innerTable = $('<table>');
+
+                        collapsible.on('click', function (e) {
+                            e.preventDefault();
+                            $('#' + resultId).slideToggle()
                         });
-                        var innerTable = "<li>"+'<div id="a-' + resultId + '"  onClick="$(\'#'+ resultId + '\').slideToggle()" >'+$(collapsible)[0].outerHTML+"</div><div id='" + resultId + "' display='none' style='display: none;'><table>";
+
+                        table.append($('<li>')
+                            .append(collapsible)
+                            .append(innerTable.attr('id', resultId).hide()));
+
                         $.each(value, function (key, val) {
-                            innerTable += "<tr>";
-                            innerTable += "<td>" + key + "</td>";
-                            innerTable += "<td>" + val + "</td>";
-                            innerTable += "</tr>";
-                        });
-                        innerTable += "</table></div></li>";
-                        $(table).append(innerTable);
-                        $("#a-"+resultId).click(function(){
-                            $('#' + resultId).slideToggle();
+                            innerTable.append($('<tr>')
+                                .append($('<td>').text(key))
+                                .append($('<td>').text(val)));
                         });
                     });
-                    return ($(table));
+                    return table;
                 };
-
-                return this; // Chaining
+                return this;
             };
         });
     }
