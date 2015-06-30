@@ -35,7 +35,7 @@
                 $('#' + widgetElementId).html(
                     '<input type="text" id="est-query">' +
                     '<input type="button" id="est-widget-search" value="search">' +
-                    '<pre id="est-widget-result"></pre>'
+                    '<div id="est-widget-result"></div>'
                 );
 
                 $('#est-widget-search').on('click', function (e) {
@@ -46,37 +46,37 @@
 
                 function estLoadData(search) {
                     $.getJSON(composeURL(search), function (data) {
-                        $('#est-widget-result').html(syntaxHighlight(data));
+                        $('#est-widget-result').html($.estStyleResults(data));
                     });
                 }
 
                 function composeURL(search) {
-                    var url = estURL + '?api_key=' + apiKey;
-                    url = (search === undefined || search == '') ? url : url + '&q=' + search
-                    return url
+                    return estURL + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search);
                 }
 
-                function syntaxHighlight(json) {
-                    if (typeof json != 'string') {
-                        json = JSON.stringify(json, undefined, 2);
-                    }
-                    json = json.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-                    return json.replace(/("(\\u[a-zA-Z0-9]{4}|\\[^u]|[^\\"])*"(\s*:)?|\b(true|false|null)\b|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)/g, function (match) {
-                        var cls = 'est-widget-number';
-                        if (/^"/.test(match)) {
-                            if (/:$/.test(match)) {
-                                cls = 'est-widget-key';
-                            } else {
-                                cls = 'est-widget-string';
-                            }
-                        } else if (/true|false/.test(match)) {
-                            cls = 'est-widget-boolean';
-                        } else if (/null/.test(match)) {
-                            cls = 'est-widget-null';
-                        }
-                        return '<span class="' + cls + '">' + match + '</span>';
+                $.estStyleResults = function (mydata) {
+                    var table = $('<ul>');
+                    $.each(mydata['results'], function (index, value) {
+                        var resultId = ('source-id-' + value['source_id']).replace(/\W/g,'-');
+                        var collapsible = $('<a />', {
+                            text:  resultId,          // jQuery text() is called,
+                            href: '#'
+                        });
+                        var innerTable = "<li>"+'<div id="a-' + resultId + '"  onClick="$(\'#'+ resultId + '\').slideToggle()" >'+$(collapsible)[0].outerHTML+"</div><div id='" + resultId + "' display='none' style='display: none;'><table>";
+                        $.each(value, function (key, val) {
+                            innerTable += "<tr>";
+                            innerTable += "<td>" + key + "</td>";
+                            innerTable += "<td>" + val + "</td>";
+                            innerTable += "</tr>";
+                        });
+                        innerTable += "</table></div></li>";
+                        $(table).append(innerTable);
+                        $("#a-"+resultId).click(function(){
+                            $('#' + resultId).slideToggle();
+                        });
                     });
-                }
+                    return ($(table));
+                };
 
                 return this; // Chaining
             };
