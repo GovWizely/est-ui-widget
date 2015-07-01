@@ -55,7 +55,7 @@
                 }
 
                 $.estStyleResults = function (mydata) {
-                    var table = $('<ul>');
+                    var results = $('<ul>');
                     $.each(mydata['results'], function (index, value) {
                         var resultId = ('source-id-' + value['source_id']).replace(/\W/g, '-');
                         var collapsible = $('<a>').text(resultId).attr('href', '#');
@@ -66,7 +66,7 @@
                             $('#' + resultId).slideToggle()
                         });
 
-                        table.append($('<li>')
+                        results.append($('<li>')
                             .append(collapsible)
                             .append(innerTable.attr('id', resultId).hide()));
 
@@ -76,7 +76,7 @@
                                 .append($('<td>').text(val)));
                         });
                     });
-                    return table;
+                    return results;
                 };
                 return this;
             };
