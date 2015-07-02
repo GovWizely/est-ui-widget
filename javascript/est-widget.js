@@ -27,6 +27,11 @@
     }
 
     function main() {
+        var paging_script_tag = document.createElement('script');
+        paging_script_tag.setAttribute("type", "text/javascript");
+        paging_script_tag.setAttribute("src", "javascript/jquery.paging.min.js");
+        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(paging_script_tag);
+
         jQuery(document).ready(function ($) {
             $.fn.est_widgetize = function (options) {
                 var apiKey = options['api_key'];
@@ -35,7 +40,8 @@
                 $('#' + widgetElementId).html(
                     '<input type="text" id="est-query">' +
                     '<input type="button" id="est-widget-search" value="search">' +
-                    '<div id="est-widget-result"></div>'
+                    '<div id="est-widget-result"></div>' +
+                    '<div id="est-pagination"></div>'
                 );
 
                 $('#est-widget-search').on('click', function (e) {
@@ -44,18 +50,51 @@
 
                 var estURL = "https://api.govwizely.com/v2/environmental_solutions/search";
 
-                function estLoadData(search) {
-                    $.getJSON(composeURL(search), function (data) {
+                function estLoadData(search, offset, init) {
+                    offset = typeof offset !== 'undefined' ? offset : 0;
+
+                    $.getJSON(composeURL(search, offset), function (data) {
+                        // Only run it on first time search, not when navigating between pages.
+                        if(typeof init === 'undefined' || init == false) {
+                            $("#est-pagination").paging(data['total'], {
+                                format: '[< ncnnn! >]',
+                                perpage: 10,
+                                lapping: 0,
+                                page: 1,
+                                onSelect: function (page) {
+                                    console.log(page);
+                                    estLoadData(search, (page-1)*10, true);
+                                },
+                                onFormat: function (type) {
+                                    switch (type) {
+                                        case 'block': // n and c
+                                            return '<a href="#">' + this.value + '</a>';
+                                        case 'next': // >
+                                            return '<a href="#">&gt;</a>';
+                                        case 'prev': // <
+                                            return '<a href="#">&lt;</a>';
+                                        case 'first': // [
+                                            return '<a href="#">first</a>';
+                                        case 'last': // ]
+                                            return '<a href="#">last</a>';
+                                    }
+                                }});
+                        }
+
                         $('#est-widget-result').html($.estStyleResults(data));
                     });
                 }
 
-                function composeURL(search) {
-                    return estURL + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search);
+                function composeURL(search,offset) {
+                    offset = typeof offset !== 'undefined' ? offset : 0;
+
+                    return estURL + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
                 }
 
                 $.estStyleResults = function (mydata) {
+
                     var results = $('<ul>');
+                    results.append($('<div>').text('total: ' + mydata['total']));
                     $.each(mydata['results'], function (index, value) {
                         var resultId = ('source-id-' + value['source_id']).replace(/\W/g, '-');
                         var collapsible = $('<a>').text(resultId).attr('href', '#');
