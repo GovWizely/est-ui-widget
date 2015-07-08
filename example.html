@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+  <head>
+    <title>EST UI Widget</title>
+    <link rel="stylesheet" type="text/css" href="est-widget.css">
+
+    <script type="text/javascript" src="est-widget.js"></script>
+    <script>
+      var apiKey = document.URL.split('?api_key=')[1];
+
+      $(document).ready(function ($) {
+        $("#example-widget-id").est_widgetize({
+          api_key: apiKey
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p>Usage: pass your API key to the page via the ?api_key= query parameter.</p>
+    <div id="example-widget-id"></div>
+  </body>
+</html>

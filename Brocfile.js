@@ -11,4 +11,9 @@ appJs = uglifyJavaScript(appJs);
 
 var appCss = compileSass(['sass'], 'style.scss', 'est-widget.css');
 
-module.exports = mergeTrees([appJs, appCss])
+var html = concat('.', {
+  inputFiles: ['example.html'],
+  outputFile: '/example.html'
+});
+
+module.exports = mergeTrees([appJs, appCss, html])
