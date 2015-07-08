@@ -1,4 +1,9 @@
 (function () {
+
+    // TODO: we'll include jQuery in our build, so we won't need the following code.
+    //       However, we may need to make sure that our jQuery is sandboxed
+    //       so that it doesn't interfere with the rest of the page.
+
     var jQuery;
     // Load jQuery if not present
     if (window.jQuery === undefined || window.jQuery.fn.jquery !== '1.11.3') {
@@ -27,10 +32,10 @@
     }
 
     function main() {
-        var paging_script_tag = document.createElement('script');
-        paging_script_tag.setAttribute("type", "text/javascript");
-        paging_script_tag.setAttribute("src", "javascript/jquery.paging.min.js");
-        (document.getElementsByTagName("head")[0] || document.documentElement).appendChild(paging_script_tag);
+        //var paging_script_tag = document.createElement('script');
+        //paging_script_tag.setAttribute("type", "text/javascript");
+        //paging_script_tag.setAttribute("src", "javascript/jquery.paging.min.js");
+        //(document.getElementsByTagName("head")[0] || document.documentElement).appendChild(paging_script_tag);
 
         jQuery(document).ready(function ($) {
             $.fn.est_widgetize = function (options) {

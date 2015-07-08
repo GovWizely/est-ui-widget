@@ -2,16 +2,19 @@
 
 An HTML widget for Environmental Solutions endpoint.
 
-## How to use
+For instructions on how to embed this widget into your website, [go here](http://govwizely.github.io/est-ui-widget/).
 
-1- copy the files from this repository.
+## Developers
 
-2- Add the following to your page's `<head>`:
+The widget distribution code is built with [BroccoliJS](https://github.com/broccolijs/broccoli). To set Broccoli up:
 
-```HTML
-<link rel="stylesheet" type="text/css" href="est-ui-widget/style.css">
-<script type="text/javascript" src="est-ui-widget/index.js"></script>
-```
+    npm install -g broccoli-cli
+    npm install --save-dev broccoli
+    npm install --save-dev broccoli-uglify-js
+    npm install --save-dev broccoli-concat
+    npm install --save-dev broccoli-sass
+    npm install --save-dev broccoli-merge-trees
 
-3- Add `<div id="est-widget-container"></div>` to wherever you wish the widget to appear.
+Then to build:
 
+    broccoli build dist
