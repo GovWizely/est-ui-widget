@@ -3,9 +3,9 @@ var uglifyJavaScript = require('broccoli-uglify-js');
 var compileSass = require('broccoli-sass');
 var mergeTrees = require('broccoli-merge-trees')
 
-var appJs = concat('./', {
-  inputFiles: ['**/javascript/**.js'],
-  outputFile: '/index.js'
+var appJs = concat('javascript', {
+  inputFiles: ['jquery-1.11.3.js', 'jquery.paging.js', 'est-widget.js'],
+  outputFile: '/est-widget.js'
 });
 appJs = uglifyJavaScript(appJs);
 
