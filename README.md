@@ -12,6 +12,8 @@ The widget distribution code is built with [BroccoliJS](https://github.com/brocc
     npm install --save-dev broccoli
     npm install --save-dev broccoli-uglify-js
     npm install --save-dev broccoli-concat
+    npm install --save-dev broccoli-sass
+    npm install --save-dev broccoli-merge-trees
 
 Then to build:
 
