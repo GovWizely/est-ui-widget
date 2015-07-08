@@ -37,15 +37,11 @@
 
       <h2>Add the EST UI widget to your web page:</h2>
       <ol>
-        <li>Grab the <a href="linktosourcefiles">source files</a>.</li>
-        <li>Make sure you have jQuery:
-        <pre><code>
-&lt;script type=&quot;text/javascript&quot; src=&quot;https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;
-        </code></pre></li>
+        <li>Grab the <a href="est-widget.js">JavaScript</a> and <a href="est-widget.css">CSS</a> source files.</li>
         <li>Add the following to your page's <code>&lt;head&gt;</code>:
           <pre><code>
-&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;est-ui-widget/style.css&quot;&gt;
-&lt;script type=&quot;text/javascript&quot; src=&quot;est-ui-widget/index.js&quot;&gt;&lt;/script&gt;
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;est-widget.css&quot;&gt;
+&lt;script type=&quot;text/javascript&quot; src=&quot;est-widget.js&quot;&gt;&lt;/script&gt;
 &lt;script&gt;
     $(document).ready(function ($) {
          $(&quot;#est-example-widget-container&quot;).est_widgetize({
