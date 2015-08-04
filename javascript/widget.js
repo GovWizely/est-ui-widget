@@ -32,11 +32,6 @@
   }
 
   function main() {
-    //var paging_script_tag = document.createElement('script');
-    //paging_script_tag.setAttribute("type", "text/javascript");
-    //paging_script_tag.setAttribute("src", "javascript/jquery.paging.min.js");
-    //(document.getElementsByTagName("head")[0] || document.documentElement).appendChild(paging_script_tag);
-
     jQuery(document).ready(function ($) {
       $.fn.searchWidget = function (options) {
         var apiKey = options['apiKey'];
