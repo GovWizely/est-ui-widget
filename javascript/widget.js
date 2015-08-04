@@ -52,7 +52,7 @@
         );
 
         $('#widget-search').on('click', function (e) {
-          estLoadData($('#query').val());
+          loadData($('#query').val());
         });
 
         $("#query").keyup(function (e) {
@@ -63,7 +63,7 @@
         });
 
 
-        function estLoadData(search, offset, init) {
+        function loadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
 
           $.getJSON(composeURL(search, offset), function (data) {
@@ -76,7 +76,7 @@
                 page: 1,
                 onSelect: function (page) {
                   console.log(page);
-                  estLoadData(search, (page - 1) * 10, true);
+                  loadData(search, (page - 1) * 10, true);
                 },
                 onFormat: function (type) {
                   switch (type) {
@@ -95,7 +95,7 @@
               });
             }
 
-            $('#widget-result').html($.estStyleResults(data));
+            $('#widget-result').html(styleResults(data));
           });
         }
 
@@ -105,7 +105,7 @@
           return url + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
         }
 
-        $.estStyleResults = function (mydata) {
+        function styleResults(mydata) {
 
           var results = $('<ul>');
           results.append($('<div id="pagination-total">').text(mydata['total'] + ' results.'));
