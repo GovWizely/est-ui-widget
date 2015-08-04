@@ -62,7 +62,7 @@
           }
         });
 
-        var estURL = "https://api.govwizely.com/v2/environmental_solutions/search";
+        var estURL = "https://api.govwizely.com/v2/envirotech/solutions/search";
 
         function estLoadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
