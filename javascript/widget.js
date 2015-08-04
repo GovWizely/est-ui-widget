@@ -38,26 +38,26 @@
     //(document.getElementsByTagName("head")[0] || document.documentElement).appendChild(paging_script_tag);
 
     jQuery(document).ready(function ($) {
-      $.fn.est_widgetize = function (options) {
-        var apiKey = options['api_key'];
+      $.fn.searchWidget = function (options) {
+        var apiKey = options['apiKey'];
         var widgetElementId = $(this).attr('id');
-        $('#' + widgetElementId).addClass('est-widget-container');
+        $('#' + widgetElementId).addClass('widget-container');
 
         $('#' + widgetElementId).html(
-          '<div id="est-widget-Keyword">Keyword</div>' +
-          '<input type="text" id="est-query">' +
-          '<input type="button" id="est-widget-search" value="Search">' +
-          '<div id="est-widget-result"></div>' +
-          '<div id="est-pagination"></div>'
+          '<div id="widget-Keyword">Keyword</div>' +
+          '<input type="text" id="query">' +
+          '<input type="button" id="widget-search" value="Search">' +
+          '<div id="widget-result"></div>' +
+          '<div id="pagination"></div>'
         );
 
-        $('#est-widget-search').on('click', function (e) {
-          estLoadData($('#est-query').val());
+        $('#widget-search').on('click', function (e) {
+          estLoadData($('#query').val());
         });
 
-        $("#est-query").keyup(function (e) {
+        $("#query").keyup(function (e) {
           if (e.keyCode == 13) {
-            $("#est-widget-search").click();
+            $("#widget-search").click();
             $(this).blur();
           }
         });
@@ -70,7 +70,7 @@
           $.getJSON(composeURL(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
             if (typeof init === 'undefined' || init == false) {
-              $("#est-pagination").paging(data['total'], {
+              $("#pagination").paging(data['total'], {
                 format: '[< ncnnn >]',
                 perpage: 10,
                 lapping: 0,
@@ -96,7 +96,7 @@
               });
             }
 
-            $('#est-widget-result').html($.estStyleResults(data));
+            $('#widget-result').html($.estStyleResults(data));
           });
         }
 
@@ -109,7 +109,7 @@
         $.estStyleResults = function (mydata) {
 
           var results = $('<ul>');
-          results.append($('<div id="est-pagination-total">').text(mydata['total'] + ' results.'));
+          results.append($('<div id="pagination-total">').text(mydata['total'] + ' results.'));
           $.each(mydata['results'], function (index, value) {
             var resultId = ('source-id-' + value['source_id']).replace(/\W/g, '-');
             var resultText = 'Source ID ' + value['source_id'];

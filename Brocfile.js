@@ -4,12 +4,12 @@ var compileSass = require('broccoli-sass');
 var mergeTrees = require('broccoli-merge-trees')
 
 var appJs = concat('javascript', {
-  inputFiles: ['jquery-1.11.3.js', 'jquery.paging.js', 'est-widget.js'],
-  outputFile: '/est-widget.js'
+  inputFiles: ['jquery-1.11.3.js', 'jquery.paging.js', 'widget.js'],
+  outputFile: '/widget.js'
 });
 appJs = uglifyJavaScript(appJs);
 
-var appCss = compileSass(['sass'], 'style.scss', 'est-widget.css');
+var appCss = compileSass(['sass'], 'style.scss', 'widget.css');
 
 var html = concat('.', {
   inputFiles: ['example.html'],

@@ -1,8 +1,8 @@
-.est-widget-container {
+.widget-container {
   font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
-#est-widget-result {
+#widget-result {
   table {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
@@ -121,7 +121,7 @@ Plugin URI: http://www.mis-algoritmos.com/2007/09/09/wp-digg-style-pagination-pl
 Author: Victor De la Rocha
 Author URI: http://www.mis-algoritmos.com
 */
-#est-pagination {
+#pagination {
   padding: 3px;
   margin: 3px;
 
@@ -156,7 +156,7 @@ Author URI: http://www.mis-algoritmos.com
   }
 }
 
-#est-pagination-total {
+#pagination-total {
   box-sizing: border-box;
   color: rgb(119, 119, 119);
   display: block;
@@ -173,7 +173,7 @@ Author URI: http://www.mis-algoritmos.com
   zoom: 1;
 }
 
-#est-widget-Keyword {
+#widget-Keyword {
   box-sizing: border-box;
   color: rgb(119, 119, 119);
   cursor: default;
@@ -192,7 +192,7 @@ Author URI: http://www.mis-algoritmos.com
   zoom: 1;
 }
 
-#est-query {
+#query {
   -webkit-appearance: none;
   -webkit-rtl-ordering: logical;
   -webkit-user-select: text;
@@ -250,7 +250,7 @@ Author URI: http://www.mis-algoritmos.com
   zoom: 1;
 }
 
-#est-widget-search {
+#widget-search {
   -webkit-appearance: none;
   -webkit-rtl-ordering: logical;
   -webkit-user-drag: none;

@@ -2,15 +2,15 @@
 <html>
   <head>
     <title>EST UI Widget</title>
-    <link rel="stylesheet" type="text/css" href="est-widget.css">
+    <link rel="stylesheet" type="text/css" href="widget.css">
 
-    <script type="text/javascript" src="est-widget.js"></script>
+    <script type="text/javascript" src="widget.js"></script>
     <script>
       var apiKey = document.URL.split('?api_key=')[1];
 
       $(document).ready(function ($) {
-        $("#example-widget-id").est_widgetize({
-          api_key: apiKey
+        $("#example-widget-id").searchWidget({
+          apiKey: apiKey
         });
       });
     </script>
