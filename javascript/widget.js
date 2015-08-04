@@ -34,7 +34,12 @@
   function main() {
     jQuery(document).ready(function ($) {
       $.fn.searchWidget = function (options) {
-        var apiKey = options['apiKey'];
+        var apiKey = options['apiKey'] || 'cfVhA_8HepggR81yU6yo1KGN';
+
+        var host = options['host'] || 'https://api.govwizely.com';
+        var endpoint = options['endpoint'];
+        var url = host + '/v2/' + endpoint + '/search';
+
         var widgetElementId = $(this).attr('id');
         $('#' + widgetElementId).addClass('widget-container');
 
@@ -57,7 +62,6 @@
           }
         });
 
-        var estURL = "https://api.govwizely.com/v2/envirotech/solutions/search";
 
         function estLoadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
@@ -98,7 +102,7 @@
         function composeURL(search, offset) {
           offset = typeof offset !== 'undefined' ? offset : 0;
 
-          return estURL + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
+          return url + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
         }
 
         $.estStyleResults = function (mydata) {
