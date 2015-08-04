@@ -40,28 +40,23 @@
         var endpoint = options['endpoint'];
         var url = host + '/v2/' + endpoint + '/search';
 
+        var title = 'Consolidated Screening List';
+
         var widgetElementId = $(this).attr('id');
         $('#' + widgetElementId).addClass('widget-container');
 
         $('#' + widgetElementId).html(
-          '<div id="widget-Keyword">Keyword</div>' +
+          '<form>' +
+          '<p>Search the <strong>' + title + '</strong>:</p>' +
           '<input type="text" id="query">' +
-          '<input type="button" id="widget-search" value="Search">' +
-          '<div id="widget-result"></div>' +
-          '<div id="pagination"></div>'
+          '<input type="submit" id="widget-search" value="Search">' +
+          '</form>'
         );
 
-        $('#widget-search').on('click', function (e) {
+        $('#' + widgetElementId + ' form').on('submit', function (e) {
+          e.preventDefault();
           loadData($('#query').val());
         });
-
-        $("#query").keyup(function (e) {
-          if (e.keyCode == 13) {
-            $("#widget-search").click();
-            $(this).blur();
-          }
-        });
-
 
         function loadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
@@ -69,6 +64,11 @@
           $.getJSON(composeURL(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
             if (typeof init === 'undefined' || init == false) {
+              $('#' + widgetElementId).append(
+                '<div id="widget-result"></div>' +
+                '<div id="pagination"></div>'
+              );
+
               $("#pagination").paging(data['total'], {
                 format: '[< ncnnn >]',
                 perpage: 10,
@@ -132,6 +132,7 @@
           });
           return results;
         };
+
         return this;
       };
     });
