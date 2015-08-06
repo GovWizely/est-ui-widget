@@ -1,13 +1,14 @@
+$THEME: #7AC2A1;
+
 .widget-container {
   font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   width: 600px;
   margin: 0 auto;
-  border: 1px solid #ddd;
   background-color: white;
   padding: 0;
 
   form {
-    background-color: #7AC2A1;
+    background-color: $THEME;
     margin: 0;
     padding: 5px 5px 10px;
     p {
@@ -18,29 +19,6 @@
       -webkit-appearance: none;
       -webkit-rtl-ordering: logical;
       -webkit-user-select: text;
-      //background-color: rgb(255, 255, 255);
-      //border-bottom-color: rgb(204, 204, 204);
-      //border-bottom-left-radius: 4px;
-      //border-bottom-right-radius: 4px;
-      //border-bottom-style: solid;
-      //border-bottom-width: 1px;
-      //border-image-outset: 0px;
-      //border-image-repeat: stretch;
-      //border-image-slice: 100%;
-      //border-image-source: none;
-      //border-image-width: 1;
-      //border-left-color: rgb(204, 204, 204);
-      //border-left-style: solid;
-      //border-left-width: 1px;
-      //border-right-color: rgb(204, 204, 204);
-      //border-right-style: solid;
-      //border-right-width: 1px;
-      //border-top-color: rgb(204, 204, 204);
-      //border-top-left-radius: 4px;
-      //border-top-right-radius: 4px;
-      //border-top-style: solid;
-      //border-top-width: 1px;
-      //border: 1px solid #ddd;
       border: none;
       box-shadow: rgb(221, 221, 221) 0px 1px 3px 0px inset;
       box-sizing: border-box;
@@ -53,14 +31,7 @@
       height: 24px;
       letter-spacing: normal;
       line-height: 24px;
-      //margin-bottom: 4px;
-      //margin-left: 0px;
-      //margin-right: 0px;
       margin-top: 8px;
-      //padding-bottom: 8px;
-      //padding-left: 10px;
-      //padding-right: 10px;
-      //padding-top: 8px;
       text-align: start;
       text-indent: 0px;
       text-rendering: auto;
@@ -79,29 +50,10 @@
       -webkit-rtl-ordering: logical;
       -webkit-user-drag: none;
       -webkit-user-select: none;
-      //background-color: rgb(0, 120, 231);
       background-color: white;
-      //border-bottom-color: rgb(153, 153, 153);
-      //border-bottom-style: solid;
-      //border-bottom-width: 1px;
-      //border-image-outset: 0px;
-      //border-image-repeat: stretch;
-      //border-image-slice: 100%;
-      //border-image-source: none;
-      //border-image-width: 1;
-      //border-left-color: rgb(153, 153, 153);
-      //border-left-style: solid;
-      //border-left-width: 1px;
-      //border-right-color: rgb(153, 153, 153);
-      //border-right-style: solid;
-      //border-right-width: 1px;
-      //border-top-color: rgb(153, 153, 153);
-      //border-top-style: solid;
-      //border-top-width: 1px;
       border: none;
       box-sizing: border-box;
-      //color: rgb(255, 255, 255);
-      color: #7AC2A1;
+      color: $THEME;
       cursor: pointer;
       font-size: 16px;
       font-style: normal;
@@ -110,15 +62,7 @@
       height: 24px;
       letter-spacing: normal;
       line-height: normal;
-      //margin-bottom: 0px;
-      //margin-left: 16px;
-      //margin-right: 0px;
-      //margin-top: 4px;
       margin: 0 0 0 6px;
-      //padding-bottom: 4px;
-      //padding-left: 16px;
-      //padding-right: 16px;
-      //padding-top: 4px;
       padding: 0;
       text-align: center;
       text-indent: 0px;
@@ -137,6 +81,8 @@
 }
 
 #widget-result {
+  border: 1px solid #ddd;
+  border-width: 0 1px;
   table {
     -webkit-border-horizontal-spacing: 0px;
     -webkit-border-vertical-spacing: 0px;
@@ -166,8 +112,7 @@
     margin-bottom: 15px;
     margin-left: 0px;
     margin-right: 0px;
-    margin-top: 0px;
-    width: 734px;
+    margin-top: 5px;
     zoom: 1;
 
     tr {
@@ -197,7 +142,6 @@
         font-style: normal;
         font-variant: normal;
         font-weight: 300;
-        height: 42px;
         line-height: 25px;
         margin-bottom: 0px;
         margin-left: 0px;
@@ -205,10 +149,6 @@
         margin-top: 0px;
         overflow-x: visible;
         overflow-y: visible;
-        padding-bottom: 8px;
-        padding-left: 16px;
-        padding-right: 16px;
-        padding-top: 8px;
         text-align: left;
         vertical-align: top;
         zoom: 1;
@@ -229,12 +169,14 @@
   }
   ul {
     list-style-type: none;
+    margin: 0;
+    padding: 15px 40px;
     li {
       a {
         background-color: rgba(0, 0, 0, 0);
         box-sizing: border-box;
-        color: rgb(0, 136, 204);
-        cursor: auto;
+        color: $THEME;
+        cursor: pointer;
         display: inline;
         font-size: 16px;
         font-style: normal;
@@ -257,36 +199,25 @@ Author URI: http://www.mis-algoritmos.com
 */
 #pagination {
   padding: 3px;
-  margin: 3px;
+  background-color: $THEME;
 
   a {
     padding: 2px 5px 2px 5px;
     margin: 2px;
-    border: 1px solid #EEE;
-    text-decoration: none; /* no underline */
-    color: #036CB4;
+    text-decoration: none;
+    color: white;
 
     &:hover,
     &:active {
-      border: 1px solid #999;
-      color: #666;
+      text-decoration: underline;
     }
   }
 
   .current {
     padding: 2px 5px 2px 5px;
     margin: 2px;
-    border: 1px solid #036CB4;
-    font-weight: bold;
-    background-color: #036CB4;
-    color: #FFF;
-  }
-
-  .disabled {
-    padding: 2px 5px 2px 5px;
-    margin: 2px;
-    border: 1px solid #EEE;
-    color: #DDD;
+    color: white;
+    background-color: darken($THEME, 15%);
   }
 }
 
@@ -303,7 +234,6 @@ Author URI: http://www.mis-algoritmos.com
   margin-left: 0px;
   margin-right: 0px;
   margin-top: 0px;
-  width: 734px;
   zoom: 1;
 }
 
@@ -322,8 +252,5 @@ Author URI: http://www.mis-algoritmos.com
   margin-right: 0px;
   margin-top: 0px;
   max-width: 100%;
-  width: 734px;
   zoom: 1;
 }
-
-

@@ -33,30 +33,47 @@
 
   function main() {
     jQuery(document).ready(function ($) {
+
+
+
+
       $.fn.searchWidget = function (options) {
-        var apiKey = options['apiKey'] || 'cfVhA_8HepggR81yU6yo1KGN';
+
+
+        var apiKey = options['apiKey'];
 
         var host = options['host'] || 'https://api.govwizely.com';
-        var endpoint = options['endpoint'];
-        var url = host + '/v2/' + endpoint + '/search';
-
-        var title = 'Consolidated Screening List';
+        var endpointInfo = endpointInfo(options['endpoint'])
+        var url = host + '/v2/' + endpointInfo.path + '/search';
 
         var widgetElementId = $(this).attr('id');
         $('#' + widgetElementId).addClass('widget-container');
 
         $('#' + widgetElementId).html(
           '<form>' +
-          '<p>Search the <strong>' + title + '</strong>:</p>' +
-          '<input type="text" id="query">' +
+          '<p>Search the <strong>' + endpointInfo.title + '</strong>:</p>' +
+          '<input type="text" name="query">' +
           '<input type="submit" id="widget-search" value="Search">' +
           '</form>'
         );
 
         $('#' + widgetElementId + ' form').on('submit', function (e) {
           e.preventDefault();
-          loadData($('#query').val());
+          loadData($('input[name=query]').val());
         });
+
+
+
+        function endpointInfo(endpoint) {
+          var info = {
+            title: 'Consolidated Screening List',
+            path: 'consolidated_screening_list',
+            resultTitleField: 'name'
+          };
+          return info;
+        }
+
+
 
         function loadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
@@ -64,10 +81,12 @@
           $.getJSON(composeURL(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
             if (typeof init === 'undefined' || init == false) {
-              $('#' + widgetElementId).append(
-                '<div id="widget-result"></div>' +
-                '<div id="pagination"></div>'
-              );
+              if ($('#widget-result').size() == 0) {
+                $('#' + widgetElementId).append(
+                  '<div id="widget-result"></div>' +
+                  '<div id="pagination"></div>'
+                );
+              }
 
               $("#pagination").paging(data['total'], {
                 format: '[< ncnnn >]',
@@ -81,7 +100,11 @@
                 onFormat: function (type) {
                   switch (type) {
                     case 'block': // n and c
-                      return '<a href="#">' + this.value + '</a>';
+                      if (this.value == this.page) {
+                        return '<span class="current">' + this.value + '</span>';
+                      } else {
+                        return '<a href="#">' + this.value + '</a>';
+                      }
                     case 'next': // >
                       return '<a href="#">&gt;</a>';
                     case 'prev': // <
@@ -99,30 +122,34 @@
           });
         }
 
+
+
         function composeURL(search, offset) {
           offset = typeof offset !== 'undefined' ? offset : 0;
-
           return url + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
         }
 
-        function styleResults(mydata) {
 
+
+        function styleResults(mydata) {
           var results = $('<ul>');
           results.append($('<div id="pagination-total">').text(mydata['total'] + ' results.'));
+
           $.each(mydata['results'], function (index, value) {
-            var resultId = ('source-id-' + value['source_id']).replace(/\W/g, '-');
-            var resultText = 'Source ID ' + value['source_id'];
+            var resultText = value[endpointInfo.resultTitleField];
             var collapsible = $('<a>').text(resultText).attr('href', '#');
-            var innerTable = $('<table>');
+            var innerTable = $('<table>').hide();
 
             collapsible.on('click', function (e) {
               e.preventDefault();
-              $('#' + resultId).slideToggle()
+              var table = $(this).siblings('table');
+              $('#widget-result').find('table').not(table).hide();
+              table.toggle('fast');
             });
 
             results.append($('<li>')
               .append(collapsible)
-              .append(innerTable.attr('id', resultId).hide()));
+              .append(innerTable));
 
             $.each(value, function (key, val) {
               innerTable.append($('<tr>')
@@ -133,8 +160,12 @@
           return results;
         };
 
+
+
         return this;
       };
+
+
     });
   }
 })();
