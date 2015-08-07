@@ -24,7 +24,7 @@
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 5px;
-    width: 590px; }
+    width: 598px; }
     .widget-container form p {
       color: white;
       display: block;
@@ -62,7 +62,7 @@
       color: black;
       cursor: auto;
       display: inline-block;
-      font-family: '.HelveticaNeueDeskInterface-Regular';
+      font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 16px;
       font-style: normal;
       font-variant: normal;
@@ -116,7 +116,7 @@
       color: #7ac2a1;
       cursor: pointer;
       display: inline-block;
-      font-family: '.HelveticaNeueDeskInterface-Regular';
+      font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 16px;
       font-style: normal;
       font-variant: normal;
@@ -302,10 +302,10 @@
     padding-left: 3px;
     padding-right: 3px;
     padding-top: 3px;
-    width: 594px; }
+    width: 598px; }
     .widget-container #pagination a, .widget-container #pagination span {
       color: white;
-      cursor: auto;
+      cursor: pointer;
       display: inline;
       font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
       height: auto;
@@ -324,7 +324,7 @@
       .widget-container #pagination span:active {
         text-decoration: underline; }
     .widget-container #pagination .current {
-      padding: 2px 5px 2px 5px;
+      padding: 0 5px;
       margin: 2px;
       color: white;
       background-color: #4ba47b; }
