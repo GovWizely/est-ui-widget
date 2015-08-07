@@ -1,29 +1,70 @@
 $THEME: #7AC2A1;
 
 .widget-container {
+  background-color: rgb(255, 255, 255);
+  display: block;
   font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  width: 600px;
   margin: 0 auto;
-  background-color: white;
-  padding: 0;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  width: 600px;
+  line-height: 1em;
 
   form {
-    background-color: $THEME;
-    margin: 0;
-    padding: 5px 5px 10px;
+    background-color: rgb(122, 194, 161);
+    display: block;
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    //height: 51px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-bottom: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 5px;
+    width: 590px;
     p {
-      color: white;
-      margin: 0;
+      color: rgb(255, 255, 255);
+      display: block;
+      font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      height: 19px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 0px;
+      width: 590px;
     }
     input[type=text] {
       -webkit-appearance: none;
       -webkit-rtl-ordering: logical;
       -webkit-user-select: text;
-      border: none;
+      background-color: rgb(255, 255, 255);
+      border-bottom-color: rgb(0, 0, 0);
+      border-bottom-style: none;
+      border-bottom-width: 0px;
+      border-image-outset: 0px;
+      border-image-repeat: stretch;
+      border-image-slice: 100%;
+      border-image-source: none;
+      border-image-width: 1;
+      border-left-color: rgb(0, 0, 0);
+      border-left-style: none;
+      border-left-width: 0px;
+      border-right-color: rgb(0, 0, 0);
+      border-right-style: none;
+      border-right-width: 0px;
+      border-top-color: rgb(0, 0, 0);
+      border-top-style: none;
+      border-top-width: 0px;
       box-shadow: rgb(221, 221, 221) 0px 1px 3px 0px inset;
       box-sizing: border-box;
       color: rgb(0, 0, 0);
       cursor: auto;
+      display: inline-block;
+      font-family: '.HelveticaNeueDeskInterface-Regular';
       font-size: 16px;
       font-style: normal;
       font-variant: normal;
@@ -31,14 +72,21 @@ $THEME: #7AC2A1;
       height: 24px;
       letter-spacing: normal;
       line-height: 24px;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
       margin-top: 8px;
+      padding-bottom: 1px;
+      padding-left: 1px;
+      padding-right: 1px;
+      padding-top: 1px;
       text-align: start;
       text-indent: 0px;
       text-rendering: auto;
       text-shadow: none;
       text-transform: none;
       vertical-align: baseline;
-      width: 75%;
+      width: 442.5px;
       word-spacing: 0px;
       writing-mode: lr-tb;
       -webkit-writing-mode: horizontal-tb;
@@ -50,11 +98,29 @@ $THEME: #7AC2A1;
       -webkit-rtl-ordering: logical;
       -webkit-user-drag: none;
       -webkit-user-select: none;
-      background-color: white;
-      border: none;
+      background-color: rgb(255, 255, 255);
+      border-bottom-color: rgb(122, 194, 161);
+      border-bottom-style: none;
+      border-bottom-width: 0px;
+      border-image-outset: 0px;
+      border-image-repeat: stretch;
+      border-image-slice: 100%;
+      border-image-source: none;
+      border-image-width: 1;
+      border-left-color: rgb(122, 194, 161);
+      border-left-style: none;
+      border-left-width: 0px;
+      border-right-color: rgb(122, 194, 161);
+      border-right-style: none;
+      border-right-width: 0px;
+      border-top-color: rgb(122, 194, 161);
+      border-top-style: none;
+      border-top-width: 0px;
       box-sizing: border-box;
-      color: $THEME;
+      color: rgb(122, 194, 161);
       cursor: pointer;
+      display: inline-block;
+      font-family: '.HelveticaNeueDeskInterface-Regular';
       font-size: 16px;
       font-style: normal;
       font-variant: normal;
@@ -62,8 +128,14 @@ $THEME: #7AC2A1;
       height: 24px;
       letter-spacing: normal;
       line-height: normal;
-      margin: 0 0 0 6px;
-      padding: 0;
+      margin-bottom: 0px;
+      margin-left: 6px;
+      margin-right: 0px;
+      margin-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 0px;
+      padding-right: 0px;
+      padding-top: 0px;
       text-align: center;
       text-indent: 0px;
       text-rendering: auto;
@@ -71,186 +143,220 @@ $THEME: #7AC2A1;
       text-transform: none;
       vertical-align: baseline;
       white-space: nowrap;
-      width: 20%;
+      width: 118px;
       word-spacing: 0px;
       writing-mode: lr-tb;
-      -webkit-writing-mode: horizontal-tb;
-      zoom: 1;
     }
   }
-}
 
-#widget-result {
-  border: 1px solid #ddd;
-  border-width: 0 1px;
-  table {
-    -webkit-border-horizontal-spacing: 0px;
-    -webkit-border-vertical-spacing: 0px;
-    background-color: rgba(0, 0, 0, 0);
-    border-bottom-color: rgb(203, 203, 203);
+  #widget-result {
+    border-bottom-color: rgb(221, 221, 221);
     border-bottom-style: solid;
-    border-bottom-width: 1px;
-    border-collapse: collapse;
+    border-bottom-width: 0px;
     border-image-outset: 0px;
     border-image-repeat: stretch;
     border-image-slice: 100%;
     border-image-source: none;
     border-image-width: 1;
-    border-left-color: rgb(203, 203, 203);
+    border-left-color: rgb(221, 221, 221);
     border-left-style: solid;
     border-left-width: 1px;
-    border-right-color: rgb(203, 203, 203);
+    border-right-color: rgb(221, 221, 221);
     border-right-style: solid;
     border-right-width: 1px;
-    border-top-color: rgb(203, 203, 203);
+    border-top-color: rgb(221, 221, 221);
     border-top-style: solid;
-    border-top-width: 1px;
-    box-sizing: border-box;
-    color: rgb(119, 119, 119);
-    display: table;
-    empty-cells: show;
-    margin-bottom: 15px;
-    margin-left: 0px;
-    margin-right: 0px;
-    margin-top: 5px;
-    zoom: 1;
+    border-top-width: 0px;
+    display: block;
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    width: 598px;
 
-    tr {
-      display: table-row;
-      border-bottom-color: rgb(203, 203, 203);
-      border-collapse: collapse;
-      border-left-color: rgb(203, 203, 203);
-      border-right-color: rgb(203, 203, 203);
-      border-top-color: rgb(203, 203, 203);
+    #pagination-total {
       box-sizing: border-box;
       color: rgb(119, 119, 119);
-      vertical-align: middle;
+      display: block;
+      font-size: 16px;
+      font-style: normal;
+      font-variant: normal;
+      font-weight: 300;
+      height: 25px;
+      margin-bottom: 0px;
+      margin-left: 40px;
+      margin-right: 0px;
+      margin-top: 0px;
+      padding-top: 15px;
+      zoom: 1;
+    }
 
-      td {
-        background-color: rgba(0, 0, 0, 0);
-        border-bottom-color: rgb(203, 203, 203);
-        border-bottom-style: solid;
-        border-bottom-width: 1px;
-        border-left-color: rgb(203, 203, 203);
-        border-left-style: solid;
-        border-left-width: 0px;
-        box-sizing: border-box;
-        color: rgb(119, 119, 119);
-        display: table-cell;
-        empty-cells: show;
-        font-size: 16px;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: 300;
+    ul {
+      display: block;
+      font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      list-style-type: none;
+      margin-bottom: 0px;
+      margin-left: 0px;
+      margin-right: 0px;
+      margin-top: 0px;
+      padding-bottom: 15px;
+      padding-left: 40px;
+      padding-right: 40px;
+      padding-top: 20px;
+      width: 518px;
+
+      li {
         line-height: 25px;
-        margin-bottom: 0px;
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 0px;
-        overflow-x: visible;
-        overflow-y: visible;
-        text-align: left;
-        vertical-align: top;
-        zoom: 1;
-
-        &:first-child {
-          word-wrap: break-word;
-          word-break: break-word;
-          width: 150px;
+        a {
+          background-color: rgba(0, 0, 0, 0);
+          box-sizing: border-box;
+          color: $THEME;
+          cursor: pointer;
+          display: inline;
+          font-size: 16px;
+          font-style: normal;
+          font-variant: normal;
+          font-weight: normal;
+          height: auto;
+          text-decoration: none;
+          width: auto;
+          zoom: 1;
         }
-        &:nth-child(2) {
-          word-wrap: break-word;
-          word-break: break-word;
-          width: 450px;
-          border-width: 0 0 1px 1px;
+
+        table {
+          -webkit-border-horizontal-spacing: 0px;
+          -webkit-border-vertical-spacing: 0px;
+          background-color: rgba(0, 0, 0, 0);
+          border-bottom-color: rgb(203, 203, 203);
+          border-bottom-style: solid;
+          border-bottom-width: 1px;
+          border-collapse: collapse;
+          border-image-outset: 0px;
+          border-image-repeat: stretch;
+          border-image-slice: 100%;
+          border-image-source: none;
+          border-image-width: 1;
+          border-left-color: rgb(203, 203, 203);
+          border-left-style: solid;
+          border-left-width: 1px;
+          border-right-color: rgb(203, 203, 203);
+          border-right-style: solid;
+          border-right-width: 1px;
+          border-top-color: rgb(203, 203, 203);
+          border-top-style: solid;
+          border-top-width: 1px;
+          box-sizing: border-box;
+          color: rgb(119, 119, 119);
+          display: table;
+          empty-cells: show;
+          font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+          font-size: 17.6000003814697px;
+          line-height: 26.3999996185303px;
+          list-style-type: none;
+          margin-bottom: 15px;
+          margin-left: 0px;
+          margin-right: 0px;
+          margin-top: 5px;
+          overflow-x: visible;
+          overflow-y: visible;
+          text-align: left;
+          width: 518px;
+          word-break: normal;
+          zoom: 1;
+
+          tr {
+            display: table-row;
+            border-bottom-color: rgb(203, 203, 203);
+            border-collapse: collapse;
+            border-left-color: rgb(203, 203, 203);
+            border-right-color: rgb(203, 203, 203);
+            border-top-color: rgb(203, 203, 203);
+            box-sizing: border-box;
+            color: rgb(119, 119, 119);
+            vertical-align: middle;
+
+            td {
+              background-color: rgba(0, 0, 0, 0);
+              border-bottom-color: rgb(203, 203, 203);
+              border-bottom-style: solid;
+              border-bottom-width: 1px;
+              border-left-color: rgb(203, 203, 203);
+              border-left-style: solid;
+              border-left-width: 0px;
+              box-sizing: border-box;
+              color: rgb(119, 119, 119);
+              display: table-cell;
+              empty-cells: show;
+              font-size: 16px;
+              font-style: normal;
+              font-variant: normal;
+              font-weight: 300;
+              line-height: 25px;
+              margin-bottom: 0px;
+              margin-left: 0px;
+              margin-right: 0px;
+              margin-top: 0px;
+              overflow-x: visible;
+              overflow-y: visible;
+              text-align: left;
+              vertical-align: top;
+              zoom: 1;
+
+              &:first-child {
+                word-wrap: break-word;
+                word-break: break-word;
+                width: 150px;
+              }
+              &:nth-child(2) {
+                word-wrap: break-word;
+                word-break: break-word;
+                width: 450px;
+                border-width: 0 0 1px 1px;
+              }
+            }
+          }
         }
       }
     }
   }
-  ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 15px 40px;
-    li {
-      a {
-        background-color: rgba(0, 0, 0, 0);
-        box-sizing: border-box;
-        color: $THEME;
-        cursor: pointer;
-        display: inline;
-        font-size: 16px;
-        font-style: normal;
-        font-variant: normal;
-        font-weight: normal;
-        height: auto;
-        text-decoration: none;
-        width: auto;
-        zoom: 1;
+
+  #pagination {
+    padding: 3px;
+    background-color: $THEME;
+    display: block;
+    font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 1em;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    padding-right: 3px;
+    padding-top: 3px;
+    width: 594px;
+
+    a, span {
+      color: rgb(255, 255, 255);
+      cursor: auto;
+      display: inline;
+      font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      height: auto;
+      margin-bottom: 2px;
+      margin-left: 2px;
+      margin-right: 2px;
+      margin-top: 2px;
+      padding-bottom: 2px;
+      padding-left: 5px;
+      padding-right: 5px;
+      padding-top: 2px;
+      text-decoration: none;
+      width: auto;
+
+      &:hover,
+      &:active {
+        text-decoration: underline;
       }
     }
-  }
-}
 
-/*
-Plugin Name: WP-Digg Style Paginator
-Plugin URI: http://www.mis-algoritmos.com/2007/09/09/wp-digg-style-pagination-plugin-v-10/
-Author: Victor De la Rocha
-Author URI: http://www.mis-algoritmos.com
-*/
-#pagination {
-  padding: 3px;
-  background-color: $THEME;
-
-  a {
-    padding: 2px 5px 2px 5px;
-    margin: 2px;
-    text-decoration: none;
-    color: white;
-
-    &:hover,
-    &:active {
-      text-decoration: underline;
+    .current {
+      padding: 2px 5px 2px 5px;
+      margin: 2px;
+      color: white;
+      background-color: darken($THEME, 15%);
     }
   }
-
-  .current {
-    padding: 2px 5px 2px 5px;
-    margin: 2px;
-    color: white;
-    background-color: darken($THEME, 15%);
-  }
-}
-
-#pagination-total {
-  box-sizing: border-box;
-  color: rgb(119, 119, 119);
-  display: block;
-  font-size: 16px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 300;
-  height: 25px;
-  margin-bottom: 6px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 0px;
-  zoom: 1;
-}
-
-#widget-Keyword {
-  box-sizing: border-box;
-  color: rgb(119, 119, 119);
-  cursor: default;
-  display: block;
-  font-size: 16px;
-  font-style: normal;
-  font-variant: normal;
-  font-weight: 100;
-  height: 25px;
-  margin-bottom: 0px;
-  margin-left: 0px;
-  margin-right: 0px;
-  margin-top: 0px;
-  max-width: 100%;
-  zoom: 1;
 }

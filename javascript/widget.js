@@ -34,14 +34,8 @@
   function main() {
     jQuery(document).ready(function ($) {
 
-
-
-
       $.fn.searchWidget = function (options) {
-
-
         var apiKey = options['apiKey'];
-
         var host = options['host'] || 'https://api.govwizely.com';
         var endpointInfo = endpointInfo(options['endpoint'])
         var url = host + '/v2/' + endpointInfo.path + '/search';
@@ -62,8 +56,6 @@
           loadData($('input[name=query]').val());
         });
 
-
-
         function endpointInfo(endpoint) {
           var info = {
             title: 'Consolidated Screening List',
@@ -73,14 +65,13 @@
           return info;
         }
 
-
-
         function loadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
 
           $.getJSON(composeURL(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
             if (typeof init === 'undefined' || init == false) {
+
               if ($('#widget-result').size() == 0) {
                 $('#' + widgetElementId).append(
                   '<div id="widget-result"></div>' +
@@ -117,23 +108,18 @@
                 }
               });
             }
-
-            $('#widget-result').html(styleResults(data));
+            $('#widget-result').empty().append(styleResults(data));
           });
         }
-
-
 
         function composeURL(search, offset) {
           offset = typeof offset !== 'undefined' ? offset : 0;
           return url + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
         }
 
-
-
         function styleResults(mydata) {
+          var total = $('<div id="pagination-total">').text(mydata['total'] + ' results');
           var results = $('<ul>');
-          results.append($('<div id="pagination-total">').text(mydata['total'] + ' results.'));
 
           $.each(mydata['results'], function (index, value) {
             var resultText = value[endpointInfo.resultTitleField];
@@ -144,7 +130,7 @@
               e.preventDefault();
               var table = $(this).siblings('table');
               $('#widget-result').find('table').not(table).hide();
-              table.toggle('fast');
+              table.toggle();
             });
 
             results.append($('<li>')
@@ -157,15 +143,11 @@
                 .append($('<td>').text(val)));
             });
           });
-          return results;
+          return [total, results];
         };
-
-
 
         return this;
       };
-
-
     });
   }
 })();
