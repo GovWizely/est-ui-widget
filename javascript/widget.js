@@ -138,9 +138,11 @@
               .append(innerTable));
 
             $.each(value, function (key, val) {
-              innerTable.append($('<tr>')
-                .append($('<td>').text(key))
-                .append($('<td>').text(val)));
+              if ($.inArray(key, ['name', 'remarks', 'source', 'alt_names']) > -1) {
+                innerTable.append($('<tr>')
+                  .append($('<td>').text(key))
+                  .append($('<td>').text(val)));
+              }
             });
           });
           return [total, results];
