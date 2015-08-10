@@ -1,6 +1,6 @@
 $THEME: #7AC2A1;
 
-.widget-container {
+.ita-search-widget-container {
   background-color: rgb(255, 255, 255);
   display: block;
   font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -149,7 +149,7 @@ $THEME: #7AC2A1;
     }
   }
 
-  #widget-result {
+  .ita-search-widget-result {
     border-bottom-color: rgb(221, 221, 221);
     border-bottom-style: solid;
     border-bottom-width: 0px;
@@ -171,7 +171,7 @@ $THEME: #7AC2A1;
     font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     width: 598px;
 
-    #pagination-total {
+    .ita-search-widget-total {
       box-sizing: border-box;
       color: rgb(119, 119, 119);
       display: block;
@@ -317,7 +317,7 @@ $THEME: #7AC2A1;
     }
   }
 
-  #pagination {
+  .ita-search-widget-pagination {
     padding: 3px;
     background-color: $THEME;
     display: block;

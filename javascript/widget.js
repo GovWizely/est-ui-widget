@@ -41,7 +41,7 @@
         var url = host + '/v2/' + endpointInfo.path + '/search';
 
         var widgetElementId = $(this).attr('id');
-        $('#' + widgetElementId).addClass('widget-container');
+        $('#' + widgetElementId).addClass('ita-search-widget-container');
 
         $('#' + widgetElementId).html(
           '<form>' +
@@ -72,14 +72,14 @@
             // Only run it on first time search, not when navigating between pages.
             if (typeof init === 'undefined' || init == false) {
 
-              if ($('#widget-result').size() == 0) {
+              if ($('.ita-search-widget-result').size() == 0) {
                 $('#' + widgetElementId).append(
-                  '<div id="widget-result"></div>' +
-                  '<div id="pagination"></div>'
+                  '<div class="ita-search-widget-result"></div>' +
+                  '<div class="ita-search-widget-pagination"></div>'
                 );
               }
 
-              $("#pagination").paging(data['total'], {
+              $(".ita-search-widget-pagination").paging(data['total'], {
                 format: '[< ncnnn >]',
                 perpage: 10,
                 lapping: 0,
@@ -108,7 +108,7 @@
                 }
               });
             }
-            $('#widget-result').empty().append(styleResults(data));
+            $('.ita-search-widget-result').empty().append(styleResults(data));
           });
         }
 
@@ -118,7 +118,7 @@
         }
 
         function styleResults(mydata) {
-          var total = $('<div id="pagination-total">').text(mydata['total'] + ' results');
+          var total = $('<div class="ita-search-widget-total">').text(mydata['total'] + ' results');
           var results = $('<ul>');
 
           $.each(mydata['results'], function (index, value) {
@@ -129,7 +129,7 @@
             collapsible.on('click', function (e) {
               e.preventDefault();
               var table = $(this).siblings('table');
-              $('#widget-result').find('table').not(table).hide();
+              $('.ita-search-widget-result').find('table').not(table).hide();
               table.toggle();
             });
 
