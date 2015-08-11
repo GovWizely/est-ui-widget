@@ -1,0 +1,33 @@
+{
+  "name": "search-widgets",
+  "version": "0.0.1",
+  "description": "ITA Search Widgets",
+  "main": "Brocfile.js",
+  "dependencies": {
+    "broccoli": "^0.16.5",
+    "broccoli-sass": "^0.6.6",
+    "broccoli-uglify-js": "^0.1.3",
+    "broccoli-concat": "^0.0.13",
+    "broccoli-merge-trees": "^0.2.2",
+    "gulp-run": "latest"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GovWizely/search-widgets.git"
+  },
+  "keywords": [
+    "search",
+    "widget",
+    "widgets"
+  ],
+  "author": "Calum Halcrow",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/GovWizely/search-widgets/issues"
+  },
+  "homepage": "https://github.com/GovWizely/search-widgets#readme"
+}
