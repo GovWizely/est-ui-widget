@@ -45,7 +45,7 @@
 
         $('#' + widgetElementId).html(
           '<form>' +
-          '<p>Search the <strong>' + endpointInfo.title + '</strong>:</p>' +
+          '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
           '<input type="text" name="query">' +
           '<input type="submit" id="widget-search" value="Search">' +
           '</form>'
@@ -58,11 +58,20 @@
 
         function endpointInfo(endpoint) {
           var info = {
-            title: 'Consolidated Screening List',
-            path: 'consolidated_screening_list',
-            resultTitleField: 'name'
+            consolidated_screening_list: {
+              title: 'the Consolidated Screening List',
+              path: 'consolidated_screening_list',
+              resultTitleField: 'name',
+              displayFields: ['name', 'remarks', 'source', 'alt_names']
+            },
+            envirotech: {
+              title: 'Envirotech Solutions',
+              path: 'envirotech/solutions',
+              resultTitleField: 'name_english',
+              displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish']
+            }
           };
-          return info;
+          return info[endpoint];
         }
 
         function loadData(search, offset, init) {
@@ -138,7 +147,7 @@
               .append(innerTable));
 
             $.each(value, function (key, val) {
-              if ($.inArray(key, ['name', 'remarks', 'source', 'alt_names']) > -1) {
+              if ($.inArray(key, endpointInfo.displayFields) > -1) {
                 innerTable.append($('<tr>')
                   .append($('<td>').text(key))
                   .append($('<td>').text(val)));
