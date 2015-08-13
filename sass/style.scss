@@ -1,10 +1,12 @@
 $THEME: #7AC2A1;
 $TABLE_BORDER: #ddd;
+$BACKGROUND: white;
+$NOTE: #888;
 
 @import 'reset';
 
 .ita-search-widget-container {
-  background-color: rgb(255, 255, 255);
+  background-color: $BACKGROUND;
   display: block;
   font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -18,13 +20,13 @@ $TABLE_BORDER: #ddd;
   }
 
   form {
-    background-color: rgb(122, 194, 161);
+    background-color: $THEME;
     display: block;
     margin: 0;
     padding: 5px 5px 10px;
     width: 590px;
     p {
-      color: rgb(255, 255, 255);
+      color: $BACKGROUND;
       display: block;
       font-size: 16px;
       height: 19px;
@@ -35,26 +37,8 @@ $TABLE_BORDER: #ddd;
       -webkit-appearance: none;
       -webkit-rtl-ordering: logical;
       -webkit-user-select: text;
-      background-color: rgb(255, 255, 255);
-      border-bottom-color: rgb(0, 0, 0);
-      border-bottom-style: none;
-      border-bottom-width: 0px;
-      border-image-outset: 0px;
-      border-image-repeat: stretch;
-      border-image-slice: 100%;
-      border-image-source: none;
-      border-image-width: 1;
-      border-left-color: rgb(0, 0, 0);
-      border-left-style: none;
-      border-left-width: 0px;
-      border-right-color: rgb(0, 0, 0);
-      border-right-style: none;
-      border-right-width: 0px;
-      border-top-color: rgb(0, 0, 0);
-      border-top-style: none;
-      border-top-width: 0px;
-      box-shadow: rgb(221, 221, 221) 0px 1px 3px 0px inset;
-      color: rgb(0, 0, 0);
+      background-color: $BACKGROUND;
+      border: 0;
       cursor: auto;
       display: inline-block;
       font-size: 16px;
@@ -64,21 +48,15 @@ $TABLE_BORDER: #ddd;
       height: 24px;
       letter-spacing: normal;
       line-height: 24px;
-      margin-bottom: 0px;
-      margin-left: 0px;
-      margin-right: 0px;
-      margin-top: 8px;
-      padding-bottom: 1px;
-      padding-left: 1px;
-      padding-right: 1px;
-      padding-top: 1px;
+      margin: 8px 0 0 0;
+      padding: 1px;
       text-align: start;
       text-indent: 0px;
       text-rendering: auto;
       text-shadow: none;
       text-transform: none;
       vertical-align: baseline;
-      width: 442.5px;
+      width: 70%;
       word-spacing: 0px;
       writing-mode: lr-tb;
       -webkit-writing-mode: horizontal-tb;
@@ -90,25 +68,9 @@ $TABLE_BORDER: #ddd;
       -webkit-rtl-ordering: logical;
       -webkit-user-drag: none;
       -webkit-user-select: none;
-      background-color: rgb(255, 255, 255);
-      border-bottom-color: rgb(122, 194, 161);
-      border-bottom-style: none;
-      border-bottom-width: 0px;
-      border-image-outset: 0px;
-      border-image-repeat: stretch;
-      border-image-slice: 100%;
-      border-image-source: none;
-      border-image-width: 1;
-      border-left-color: rgb(122, 194, 161);
-      border-left-style: none;
-      border-left-width: 0px;
-      border-right-color: rgb(122, 194, 161);
-      border-right-style: none;
-      border-right-width: 0px;
-      border-top-color: rgb(122, 194, 161);
-      border-top-style: none;
-      border-top-width: 0px;
-      color: rgb(122, 194, 161);
+      background-color: $BACKGROUND;
+      border: 0;
+      color: $THEME;
       cursor: pointer;
       display: inline-block;
       font-size: 16px;
@@ -118,14 +80,8 @@ $TABLE_BORDER: #ddd;
       height: 24px;
       letter-spacing: normal;
       line-height: normal;
-      margin-bottom: 0px;
-      margin-left: 6px;
-      margin-right: 0px;
-      margin-top: 0px;
-      padding-bottom: 0px;
-      padding-left: 0px;
-      padding-right: 0px;
-      padding-top: 0px;
+      margin: 0 0 0 6px;
+      padding: 1px;
       text-align: center;
       text-indent: 0px;
       text-rendering: auto;
@@ -133,45 +89,27 @@ $TABLE_BORDER: #ddd;
       text-transform: none;
       vertical-align: baseline;
       white-space: nowrap;
-      width: 118px;
+      width: 25%;
       word-spacing: 0px;
       writing-mode: lr-tb;
     }
   }
 
   .ita-search-widget-result {
-    border-bottom-color: rgb(221, 221, 221);
-    border-bottom-style: solid;
-    border-bottom-width: 0px;
-    border-image-outset: 0px;
-    border-image-repeat: stretch;
-    border-image-slice: 100%;
-    border-image-source: none;
-    border-image-width: 1;
-    border-left-color: rgb(221, 221, 221);
-    border-left-style: solid;
-    border-left-width: 1px;
-    border-right-color: rgb(221, 221, 221);
-    border-right-style: solid;
-    border-right-width: 1px;
-    border-top-color: rgb(221, 221, 221);
-    border-top-style: solid;
-    border-top-width: 0px;
+    border: 1px solid $TABLE_BORDER;
+    border-width: 0 1px;
     display: block;
     width: 598px;
 
     .ita-search-widget-total {
-      color: rgb(119, 119, 119);
+      color: $NOTE;
       display: block;
       font-size: 16px;
       font-style: normal;
       font-variant: normal;
       font-weight: 300;
-      height: 25px;
-      margin-bottom: 0px;
-      margin-left: 40px;
-      margin-right: 0px;
-      margin-top: 0px;
+      height: 24px;
+      margin: 0 0 0 40px;
       padding-top: 15px;
       zoom: 1;
     }
@@ -184,9 +122,9 @@ $TABLE_BORDER: #ddd;
       width: 518px;
 
       li {
-        line-height: 25px;
+        line-height: 24px;
         a {
-          background-color: rgba(0, 0, 0, 0);
+          background-color: $BACKGROUND;
           color: $THEME;
           cursor: pointer;
           display: inline;
@@ -203,17 +141,14 @@ $TABLE_BORDER: #ddd;
         table {
           -webkit-border-horizontal-spacing: 0px;
           -webkit-border-vertical-spacing: 0px;
-          background-color: rgba(0, 0, 0, 0);
+          background-color: $BACKGROUND;
           border: 1px solid $TABLE_BORDER;
           border-width: 0 0 1px 1px;
-          color: rgb(119, 119, 119);
+          color: $NOTE;
           display: table;
           empty-cells: show;
           list-style-type: none;
-          margin-bottom: 15px;
-          margin-left: 0px;
-          margin-right: 0px;
-          margin-top: 5px;
+          margin: 5px 0 15px;
           overflow-x: visible;
           overflow-y: visible;
           text-align: left;
@@ -224,26 +159,23 @@ $TABLE_BORDER: #ddd;
           tr {
             display: table-row;
             border-collapse: collapse;
-            color: rgb(119, 119, 119);
+            color: $NOTE;
             vertical-align: middle;
 
             td {
               background-color: white;
               border: 1px solid $TABLE_BORDER;
               border-width: 1px 1px 0 0;
-              color: rgb(119, 119, 119);
+              color: $NOTE;
               display: table-cell;
               empty-cells: show;
               font-size: 16px;
               font-style: normal;
               font-variant: normal;
               font-weight: 300;
-              line-height: 25px;
-              margin-bottom: 0px;
-              margin-left: 0px;
-              margin-right: 0px;
-              margin-top: 0px;
-              padding: 0;
+              line-height: 24px;
+              margin: 0;
+              padding: 5px;
               overflow-x: visible;
               overflow-y: visible;
               text-align: left;
@@ -253,12 +185,12 @@ $TABLE_BORDER: #ddd;
               &:first-child {
                 word-wrap: break-word;
                 word-break: break-word;
-                width: 150px;
+                width: 140px;
               }
               &:nth-child(2) {
                 word-wrap: break-word;
                 word-break: break-word;
-                width: 450px;
+                width: 440px;
               }
             }
           }
