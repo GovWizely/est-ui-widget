@@ -77,17 +77,28 @@
         function loadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
 
+          if (typeof init === 'undefined' || init == false) {
+            if ($('.ita-search-widget-result').size() == 0) {
+              $('#' + widgetElementId).append(
+                '<div class="ita-search-widget-result"></div>' +
+                '<div class="ita-search-widget-pagination"></div>'
+              );
+            }
+          }
+
+          $('.ita-search-widget-result').html(
+            '<div class="spinner">' +
+              '<div class="rect1"></div>' +
+              '<div class="rect2"></div>' +
+              '<div class="rect3"></div>' +
+              '<div class="rect4"></div>' +
+              '<div class="rect5"></div>' +
+            '</div>'
+          );
+
           $.getJSON(composeURL(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
             if (typeof init === 'undefined' || init == false) {
-
-              if ($('.ita-search-widget-result').size() == 0) {
-                $('#' + widgetElementId).append(
-                  '<div class="ita-search-widget-result"></div>' +
-                  '<div class="ita-search-widget-pagination"></div>'
-                );
-              }
-
               $(".ita-search-widget-pagination").paging(data['total'], {
                 format: '[< ncnnn >]',
                 perpage: 10,
