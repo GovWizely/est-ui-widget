@@ -76,8 +76,9 @@
 
         function loadData(search, offset, init) {
           offset = typeof offset !== 'undefined' ? offset : 0;
+          init = typeof init !== 'undefined' ? init : true;
 
-          if (typeof init === 'undefined' || init == false) {
+          if (init) {
             if ($('.ita-search-widget-result').size() == 0) {
               $('#' + widgetElementId).append(
                 '<div class="ita-search-widget-result"></div>' +
@@ -98,7 +99,7 @@
 
           $.getJSON(composeURL(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
-            if (typeof init === 'undefined' || init == false) {
+            if (init) {
               $(".ita-search-widget-pagination").paging(data['total'], {
                 format: '[< ncnnn >]',
                 perpage: 10,
@@ -106,7 +107,7 @@
                 page: 1,
                 onSelect: function (page) {
                   console.log(page);
-                  loadData(search, (page - 1) * 10, true);
+                  loadData(search, (page - 1) * 10, false);
                 },
                 onFormat: function (type) {
                   switch (type) {
