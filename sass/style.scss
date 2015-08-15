@@ -224,6 +224,10 @@ $NOTE: #888;
       &:active {
         text-decoration: underline;
       }
+
+      &.ita-search-widget-clear {
+        float: right;
+      }
     }
     span.current {
       @include page;

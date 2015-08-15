@@ -16,7 +16,7 @@ var appJs = concat('javascript', {
   inputFiles: ['jquery.paging.js', 'widget.js'],
   outputFile: '/widget.js'
 });
-appJs = uglifyJavaScript(appJs);
+//appJs = uglifyJavaScript(appJs);
 
 var appCss = compileSass(['sass'], 'style.scss', 'widget.css');
 

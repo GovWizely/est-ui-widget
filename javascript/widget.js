@@ -98,9 +98,13 @@
           );
 
           $.getJSON(composeURL(search, offset), function (data) {
+            var pagination,
+              clear;
+
             // Only run it on first time search, not when navigating between pages.
             if (init) {
-              $(".ita-search-widget-pagination").paging(data['total'], {
+              pagination = $(".ita-search-widget-pagination");
+              pagination.paging(data['total'], {
                 format: '[< ncnnn >]',
                 perpage: 10,
                 lapping: 0,
@@ -128,9 +132,21 @@
                   }
                 }
               });
+              pagination.append(clearLink());
             }
+
             $('.ita-search-widget-result').empty().append(styleResults(data));
           });
+        }
+
+        function clearLink() {
+          var clearLink = $('<a class="ita-search-widget-clear" href="#">Clear</a>');
+          clearLink.on('click', function(e) {
+            e.preventDefault();
+            $('input[name=query]').val("");
+            $('.ita-search-widget-result, .ita-search-widget-pagination').remove();
+          });
+          return clearLink;
         }
 
         function composeURL(search, offset) {
