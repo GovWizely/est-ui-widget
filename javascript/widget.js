@@ -138,35 +138,42 @@
           return url + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
         }
 
-        function styleResults(mydata) {
-          var total = $('<div class="ita-search-widget-total">').text(mydata['total'] + ' results');
-          var results = $('<ul>');
+        function styleResults(payload) {
+          var total = $('<div class="ita-search-widget-total">').text(payload['total'] + ' results');
+          var elements = [total],
+            results;
 
-          $.each(mydata['results'], function (index, value) {
-            var resultText = value[endpointInfo.resultTitleField];
-            var collapsible = $('<a>').text(resultText).attr('href', '#');
-            var innerTable = $('<table>').hide();
+          if (payload['total'] > 0) {
+            results = $('<ul>');
 
-            collapsible.on('click', function (e) {
-              e.preventDefault();
-              var table = $(this).siblings('table');
-              $('.ita-search-widget-result').find('table').not(table).hide();
-              table.toggle();
+            $.each(payload['results'], function (index, value) {
+              var resultText = value[endpointInfo.resultTitleField];
+              var collapsible = $('<a>').text(resultText).attr('href', '#');
+              var innerTable = $('<table>').hide();
+
+              collapsible.on('click', function (e) {
+                e.preventDefault();
+                var table = $(this).siblings('table');
+                $('.ita-search-widget-result').find('table').not(table).hide();
+                table.toggle();
+              });
+
+              results.append($('<li>')
+                .append(collapsible)
+                .append(innerTable));
+
+              $.each(value, function (key, val) {
+                if ($.inArray(key, endpointInfo.displayFields) > -1) {
+                  innerTable.append($('<tr>')
+                    .append($('<td>').text(key))
+                    .append($('<td>').text(val)));
+                }
+              });
             });
+            elements.push(results);
+          }
 
-            results.append($('<li>')
-              .append(collapsible)
-              .append(innerTable));
-
-            $.each(value, function (key, val) {
-              if ($.inArray(key, endpointInfo.displayFields) > -1) {
-                innerTable.append($('<tr>')
-                  .append($('<td>').text(key))
-                  .append($('<td>').text(val)));
-              }
-            });
-          });
-          return [total, results];
+          return elements;
         };
 
         return this;
