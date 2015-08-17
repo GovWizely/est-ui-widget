@@ -94,6 +94,12 @@
   line-height: 1em; }
   .ita-search-widget-container * {
     box-sizing: content-box; }
+  .ita-search-widget-container a {
+    cursor: pointer;
+    text-decoration: none; }
+    .ita-search-widget-container a:hover,
+    .ita-search-widget-container a:active {
+      text-decoration: underline; }
   .ita-search-widget-container form {
     background-color: #7AC2A1;
     display: block;
@@ -164,12 +170,12 @@
       width: 25%;
       word-spacing: 0px;
       writing-mode: lr-tb; }
-  .ita-search-widget-container .ita-search-widget-result {
+  .ita-search-widget-container .ita-search-widget-results {
     border: 1px solid #ddd;
-    border-width: 0 1px;
+    border-top: 0;
     display: block;
     width: 598px; }
-    .ita-search-widget-container .ita-search-widget-result .ita-search-widget-total {
+    .ita-search-widget-container .ita-search-widget-results .ita-search-widget-total {
       color: #888;
       display: block;
       font-size: 16px;
@@ -177,31 +183,30 @@
       font-variant: normal;
       font-weight: 300;
       height: 24px;
-      margin: 0 0 0 40px;
-      padding-top: 15px;
+      line-height: 24px;
+      margin: 0;
+      padding: 15px 40px;
       zoom: 1; }
-    .ita-search-widget-container .ita-search-widget-result ul {
+    .ita-search-widget-container .ita-search-widget-results ul {
       display: block;
       list-style-type: none;
       margin: 0;
       padding: 0 40px 15px;
       width: 518px; }
-      .ita-search-widget-container .ita-search-widget-result ul li {
+      .ita-search-widget-container .ita-search-widget-results ul li {
         line-height: 24px; }
-        .ita-search-widget-container .ita-search-widget-result ul li a {
+        .ita-search-widget-container .ita-search-widget-results ul li a {
           background-color: white;
           color: #7AC2A1;
-          cursor: pointer;
           display: inline;
           font-size: 16px;
           font-style: normal;
           font-variant: normal;
           font-weight: normal;
           height: auto;
-          text-decoration: none;
           width: auto;
           zoom: 1; }
-        .ita-search-widget-container .ita-search-widget-result ul li table {
+        .ita-search-widget-container .ita-search-widget-results ul li table {
           -webkit-border-horizontal-spacing: 0px;
           -webkit-border-vertical-spacing: 0px;
           background-color: white;
@@ -218,12 +223,12 @@
           width: 518px;
           word-break: normal;
           zoom: 1; }
-          .ita-search-widget-container .ita-search-widget-result ul li table tr {
+          .ita-search-widget-container .ita-search-widget-results ul li table tr {
             display: table-row;
             border-collapse: collapse;
             color: #888;
             vertical-align: middle; }
-            .ita-search-widget-container .ita-search-widget-result ul li table tr td {
+            .ita-search-widget-container .ita-search-widget-results ul li table tr td {
               background-color: white;
               border: 1px solid #ddd;
               border-width: 1px 1px 0 0;
@@ -242,37 +247,47 @@
               text-align: left;
               vertical-align: top;
               zoom: 1; }
-              .ita-search-widget-container .ita-search-widget-result ul li table tr td:first-child {
+              .ita-search-widget-container .ita-search-widget-results ul li table tr td:first-child {
                 word-wrap: break-word;
                 word-break: break-word;
                 width: 140px; }
-              .ita-search-widget-container .ita-search-widget-result ul li table tr td:nth-child(2) {
+              .ita-search-widget-container .ita-search-widget-results ul li table tr td:nth-child(2) {
                 word-wrap: break-word;
                 word-break: break-word;
                 width: 440px; }
-  .ita-search-widget-container .ita-search-widget-pagination {
+  .ita-search-widget-container .ita-search-widget-footer {
     background-color: #7AC2A1;
+    width: 600px;
     height: 24px;
     line-height: 24px;
-    padding: 0;
-    width: 600px; }
-    .ita-search-widget-container .ita-search-widget-pagination a {
-      color: white;
-      display: block;
+    color: white; }
+    .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-pagination {
+      height: 24px;
+      padding: 0;
+      float: left; }
+      .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-pagination a {
+        color: white;
+        display: block;
+        float: left;
+        padding: 0 5px;
+        width: auto; }
+      .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-pagination span.current {
+        color: white;
+        display: block;
+        float: left;
+        padding: 0 5px;
+        width: auto;
+        background-color: #4ba47b;
+        height: 24px; }
+    .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-clear,
+    .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-more-info {
+      height: 24px;
       float: left;
-      padding: 0 5px;
-      text-decoration: none;
-      width: auto;
-      cursor: pointer; }
-      .ita-search-widget-container .ita-search-widget-pagination a:hover,
-      .ita-search-widget-container .ita-search-widget-pagination a:active {
-        text-decoration: underline; }
-    .ita-search-widget-container .ita-search-widget-pagination span.current {
-      color: white;
-      display: block;
-      float: left;
-      padding: 0 5px;
-      text-decoration: none;
-      width: auto;
-      background-color: #4ba47b;
-      height: 24px; }
+      padding: 0 5px 0 10px; }
+      .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-clear::before,
+      .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-more-info::before {
+        content: "|"; }
+      .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-clear a,
+      .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-more-info a {
+        color: white;
+        padding: 0 0 0 15px; }
