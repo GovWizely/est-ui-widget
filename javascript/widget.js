@@ -39,114 +39,33 @@
         var host = options['host'] || 'https://api.govwizely.com';
         var endpointInfo = endpointInfo(options['endpoint'])
         var url = host + '/v2/' + endpointInfo.path + '/search';
+        var resultsDiv;
 
-        var widgetElementId = $(this).attr('id');
-        $('#' + widgetElementId).addClass('ita-search-widget-container');
+        var widgetContainer = $(this);
+        widgetContainer.addClass('ita-search-widget-container');
+        widgetContainer.empty().append(buildSearchForm());
 
-        $('#' + widgetElementId).html(
-          '<form>' +
-          '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
-          '<input type="text" name="query">' +
-          '<input type="submit" id="widget-search" value="Search">' +
-          '</form>'
-        );
-
-        $('#' + widgetElementId + ' form').on('submit', function (e) {
-          e.preventDefault();
-          loadData($('input[name=query]').val());
-        });
-
-        function endpointInfo(endpoint) {
-          var info = {
-            consolidated_screening_list: {
-              title: 'the Consolidated Screening List',
-              path: 'consolidated_screening_list',
-              resultTitleField: 'name',
-              displayFields: ['name', 'remarks', 'source', 'alt_names']
-            },
-            envirotech: {
-              title: 'Envirotech Solutions',
-              path: 'envirotech/solutions',
-              resultTitleField: 'name_english',
-              displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish']
-            }
-          };
-          return info[endpoint];
-        }
-
-        function loadData(search, offset, init) {
+        function loadData(search, offset, newSearch) {
           offset = typeof offset !== 'undefined' ? offset : 0;
-          init = typeof init !== 'undefined' ? init : true;
+          newSearch = typeof newSearch !== 'undefined' ? newSearch : true;
 
-          if (init) {
-            if ($('.ita-search-widget-result').size() == 0) {
-              $('#' + widgetElementId).append(
-                '<div class="ita-search-widget-result"></div>' +
-                '<div class="ita-search-widget-pagination"></div>'
-              );
-            }
+          if (!resultsDiv) {
+            resultsDiv = buildResultsDiv();
+            widgetContainer.append(resultsDiv);
           }
-
-          $('.ita-search-widget-result').html(
-            '<div class="spinner">' +
-              '<div class="rect1"></div>' +
-              '<div class="rect2"></div>' +
-              '<div class="rect3"></div>' +
-              '<div class="rect4"></div>' +
-              '<div class="rect5"></div>' +
-            '</div>'
-          );
+          resultsDiv.empty().append(buildSpinner());
 
           $.getJSON(composeURL(search, offset), function (data) {
-            var pagination,
-              clear;
 
             // Only run it on first time search, not when navigating between pages.
-            if (init) {
-              pagination = $(".ita-search-widget-pagination");
-              pagination.paging(data['total'], {
-                format: '[< ncnnn >]',
-                perpage: 10,
-                lapping: 0,
-                page: 1,
-                onSelect: function (page) {
-                  console.log(page);
-                  loadData(search, (page - 1) * 10, false);
-                },
-                onFormat: function (type) {
-                  switch (type) {
-                    case 'block': // n and c
-                      if (this.value == this.page) {
-                        return '<span class="current">' + this.value + '</span>';
-                      } else {
-                        return '<a href="#">' + this.value + '</a>';
-                      }
-                    case 'next': // >
-                      return '<a href="#">&gt;</a>';
-                    case 'prev': // <
-                      return '<a href="#">&lt;</a>';
-                    case 'first': // [
-                      return '<a href="#">First</a>';
-                    case 'last': // ]
-                      return '<a href="#">Last</a>';
-                  }
-                }
-              });
-              pagination.append(clearLink());
+            if (newSearch) {
+              widgetContainer.find('.ita-search-widget-pagination, .ita-search-widget-clear').remove();
+              widgetContainer.append(buildPaginationDiv(search, data['total']));
+              widgetContainer.append(buildClearLink());
             }
 
-            $('.ita-search-widget-result').empty().append(styleResults(data));
+            resultsDiv.empty().append(styleResults(data));
           });
-        }
-
-        function clearLink() {
-          var clearLink = $('<a class="ita-search-widget-clear" href="#">Clear</a>');
-          clearLink.on('click', function(e) {
-            e.preventDefault();
-            $('input[name=query]').val("");
-            $('.ita-search-widget-result, .ita-search-widget-pagination').remove();
-          });
-          return clearLink;
         }
 
         function composeURL(search, offset) {
@@ -170,7 +89,7 @@
               collapsible.on('click', function (e) {
                 e.preventDefault();
                 var table = $(this).siblings('table');
-                $('.ita-search-widget-result').find('table').not(table).hide();
+                resultsDiv.find('table').not(table).hide();
                 table.toggle();
               });
 
@@ -191,6 +110,96 @@
 
           return elements;
         };
+
+        function endpointInfo(endpoint) {
+          var info = {
+            consolidated_screening_list: {
+              title: 'the Consolidated Screening List',
+              path: 'consolidated_screening_list',
+              resultTitleField: 'name',
+              displayFields: ['name', 'remarks', 'source', 'alt_names']
+            },
+            envirotech: {
+              title: 'Envirotech Solutions',
+              path: 'envirotech/solutions',
+              resultTitleField: 'name_english',
+              displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish']
+            }
+          };
+          return info[endpoint];
+        }
+
+        // --- functions that return DOM elements:
+
+        function buildResultsDiv() {
+          return $('<div class="ita-search-widget-results"></div>');
+        }
+
+        function buildPaginationDiv(search, total) {
+          var paginationDiv = $('<div class="ita-search-widget-pagination"></div>');
+          paginationDiv.paging(total, {
+            format: '[< nncnn >]',
+            perpage: 10,
+            lapping: 0,
+            page: 1,
+            onSelect: function (page) {
+              loadData(search, (page - 1) * 10, false);
+            },
+            onFormat: function (type) {
+              switch (type) {
+                case 'block': // n and c
+                  if (this.value == this.page) {
+                    return '<span class="current">' + this.value + '</span>';
+                  } else {
+                    return '<a href="#">' + this.value + '</a>';
+                  }
+                case 'next': // >
+                  return '<a href="#">&gt;</a>';
+                case 'prev': // <
+                  return '<a href="#">&lt;</a>';
+                case 'first': // [
+                  return '<a href="#">First</a>';
+                case 'last': // ]
+                  return '<a href="#">Last</a>';
+              }
+            }
+          });
+          return paginationDiv;
+        }
+
+        function buildSearchForm() {
+          var searchForm = $('<form>' +
+            '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
+            '<input type="text" name="query">' +
+            '<input type="submit" id="widget-search" value="Search">' +
+          '</form>');
+          searchForm.on('submit', function (e) {
+            e.preventDefault();
+            loadData(widgetContainer.find('input[name=query]').val());
+          });
+          return searchForm;
+        };
+
+        function buildClearLink() {
+          var clearLink = $('<div class="ita-search-widget-clear"><a href="#">Clear</a></div>');
+          clearLink.on('click', function(e) {
+            e.preventDefault();
+            resultsDiv = false;
+            widgetContainer.find('input[name=query]').val("");
+            widgetContainer.find('.ita-search-widget-results, .ita-search-widget-pagination, .ita-search-widget-clear').remove();
+          });
+          return clearLink;
+        }
+
+        function buildSpinner() {
+          return $('<div class="spinner">' +
+            '<div class="rect1"></div>' +
+            '<div class="rect2"></div>' +
+            '<div class="rect3"></div>' +
+            '<div class="rect4"></div>' +
+            '<div class="rect5"></div>' +
+          '</div>');
+        }
 
         return this;
       };

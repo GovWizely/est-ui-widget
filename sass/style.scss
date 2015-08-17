@@ -20,6 +20,15 @@ $NOTE: #888;
     box-sizing: content-box;
   }
 
+  a {
+    cursor: pointer;
+    text-decoration: none;
+    &:hover,
+    &:active {
+      text-decoration: underline;
+    }
+  }
+
   form {
     background-color: $THEME;
     display: block;
@@ -96,7 +105,7 @@ $NOTE: #888;
     }
   }
 
-  .ita-search-widget-result {
+  .ita-search-widget-results {
     border: 1px solid $TABLE_BORDER;
     border-width: 0 1px;
     display: block;
@@ -128,14 +137,12 @@ $NOTE: #888;
         a {
           background-color: $BACKGROUND;
           color: $THEME;
-          cursor: pointer;
           display: inline;
           font-size: 16px;
           font-style: normal;
           font-variant: normal;
           font-weight: normal;
           height: auto;
-          text-decoration: none;
           width: auto;
           zoom: 1;
         }
@@ -206,25 +213,19 @@ $NOTE: #888;
     height: 24px;
     line-height: 24px;
     padding: 0;
-    width: 600px;
+    width: 500px;
+    float: left;
 
     @mixin page {
       color: white;
       display: block;
       float: left;
       padding: 0 5px;
-      text-decoration: none;
       width: auto;
     }
 
     a {
       @include page;
-      cursor: pointer;
-      &:hover,
-      &:active {
-        text-decoration: underline;
-      }
-
       &.ita-search-widget-clear {
         float: right;
       }
@@ -233,6 +234,19 @@ $NOTE: #888;
       @include page;
       background-color: darken($THEME, 15%);
       height: 24px;
+    }
+  }
+
+  .ita-search-widget-clear {
+    background-color: $THEME;
+    float: left;
+    height: 24px;
+    line-height: 24px;
+    padding: 0 10px 0 0;
+    text-align: right;
+    width: 90px;
+    a {
+      color: white;
     }
   }
 }
