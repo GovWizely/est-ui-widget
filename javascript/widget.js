@@ -35,10 +35,7 @@
     jQuery(document).ready(function ($) {
 
       $.fn.searchWidget = function (options) {
-        var apiKey = options['apiKey'];
-        var host = options['host'] || 'https://api.govwizely.com';
-        var endpointInfo = endpointInfo(options['endpoint'])
-        var url = host + '/v2/' + endpointInfo.path + '/search';
+        var endpointInfo = getEndpointInfo(options['endpoint'])
         var resultsDiv;
 
         var widgetContainer = $(this);
@@ -55,23 +52,27 @@
           }
           resultsDiv.empty().append(buildSpinner());
 
-          $.getJSON(composeURL(search, offset), function (data) {
-
+          $.getJSON(endpointInfo.searchUrl(search, offset), function (data) {
             // Only run it on first time search, not when navigating between pages.
             if (newSearch) {
-              widgetContainer.find('.ita-search-widget-pagination, .ita-search-widget-clear').remove();
-              widgetContainer.append(buildPaginationDiv(search, data['total']));
-              widgetContainer.append(buildClearLink());
+              widgetContainer.find('.ita-search-widget-footer').remove();
+              widgetContainer.append(buildFooter(search, data['total']));
             }
 
             resultsDiv.empty().append(styleResults(data));
+
           });
         }
 
-        function composeURL(search, offset) {
-          offset = typeof offset !== 'undefined' ? offset : 0;
-          return url + '?api_key=' + apiKey + (search == '' ? '' : '&q=' + search) + '&offset=' + offset;
-        }
+        function buildFooter(search, total) {
+          var footer = $('<div class="ita-search-widget-footer"></div>');
+          footer.append(buildPaginationDiv(search, total));
+          footer.append(buildClearLink());
+          if (options['endpoint'] == 'consolidated_screening_list') {
+            footer.append(buildMoreInfoLink('http://export.gov/ecr/eg_main_023148.asp'));
+          }
+          return footer;
+        };
 
         function styleResults(payload) {
           var total = $('<div class="ita-search-widget-total">').text(payload['total'] + ' results');
@@ -111,19 +112,35 @@
           return elements;
         };
 
-        function endpointInfo(endpoint) {
+        function getEndpointInfo(endpoint) {
+          var apiKey = options['apiKey'];
+          var host =  options['host'] || 'https://api.govwizely.com';
           var info = {
             consolidated_screening_list: {
               title: 'the Consolidated Screening List',
-              path: 'consolidated_screening_list',
               resultTitleField: 'name',
-              displayFields: ['name', 'remarks', 'source', 'alt_names']
+              displayFields: ['name', 'remarks', 'source', 'alt_names'],
+              searchUrl: function(search, offset) {
+                offset = offset || 0;
+                var url = host + '/v2/consolidated_screening_list/search' +
+                  '?api_key=' + apiKey +
+                  (search == '' ? '' : '&fuzzy_name=true&name=' + search) +
+                  '&offset=' + offset;
+                return url;
+              }
             },
             envirotech: {
               title: 'Envirotech Solutions',
-              path: 'envirotech/solutions',
               resultTitleField: 'name_english',
-              displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish']
+              displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish'],
+              searchUrl: function(search, offset) {
+                offset = offset || 0;
+                var url = host + '/v2/envirotech/solutions/search' +
+                  '?api_key=' + apiKey +
+                  (search == '' ? '' : '&q=' + search) +
+                  '&offset=' + offset;
+                return url;
+              }
             }
           };
           return info[endpoint];
@@ -186,9 +203,13 @@
             e.preventDefault();
             resultsDiv = false;
             widgetContainer.find('input[name=query]').val("");
-            widgetContainer.find('.ita-search-widget-results, .ita-search-widget-pagination, .ita-search-widget-clear').remove();
+            widgetContainer.find('.ita-search-widget-results, .ita-search-widget-footer').remove();
           });
           return clearLink;
+        }
+
+        function buildMoreInfoLink(href) {
+          return $('<div class="ita-search-widget-more-info"><a target="_blank" href="' + href + '">More Info</a></div>');
         }
 
         function buildSpinner() {

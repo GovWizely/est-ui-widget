@@ -107,7 +107,7 @@ $NOTE: #888;
 
   .ita-search-widget-results {
     border: 1px solid $TABLE_BORDER;
-    border-width: 0 1px;
+    border-top: 0;
     display: block;
     width: 598px;
 
@@ -208,45 +208,48 @@ $NOTE: #888;
     }
   }
 
-  .ita-search-widget-pagination {
+  .ita-search-widget-footer {
     background-color: $THEME;
+    width: 600px;
     height: 24px;
     line-height: 24px;
-    padding: 0;
-    width: 500px;
-    float: left;
+    color: white;
 
-    @mixin page {
-      color: white;
-      display: block;
+    .ita-search-widget-pagination {
+      height: 24px;
+      padding: 0;
       float: left;
-      padding: 0 5px;
-      width: auto;
-    }
 
-    a {
-      @include page;
-      &.ita-search-widget-clear {
-        float: right;
+      @mixin page {
+        color: white;
+        display: block;
+        float: left;
+        padding: 0 5px;
+        width: auto;
+      }
+
+      a {
+        @include page;
+      }
+      span.current {
+        @include page;
+        background-color: darken($THEME, 15%);
+        height: 24px;
       }
     }
-    span.current {
-      @include page;
-      background-color: darken($THEME, 15%);
-      height: 24px;
-    }
-  }
 
-  .ita-search-widget-clear {
-    background-color: $THEME;
-    float: left;
-    height: 24px;
-    line-height: 24px;
-    padding: 0 10px 0 0;
-    text-align: right;
-    width: 90px;
-    a {
-      color: white;
+    .ita-search-widget-clear,
+    .ita-search-widget-more-info {
+      height: 24px;
+      float: left;
+      padding: 0 5px 0 10px;
+      &::before {
+        content: "|";
+      }
+      a {
+        color: white;
+        padding: 0 0 0 15px;
+      }
     }
   }
 }
