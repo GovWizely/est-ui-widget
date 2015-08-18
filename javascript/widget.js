@@ -209,7 +209,7 @@
         }
 
         function buildMoreInfoLink(href) {
-          return $('<div class="ita-search-widget-more-info"><a target="_blank" href="' + href + '">More Info</a></div>');
+          return $('<div class="ita-search-widget-more-info"><a target="_blank" href="' + href + '">More Info About the Results</a></div>');
         }
 
         function buildSpinner() {
