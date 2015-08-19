@@ -68,15 +68,11 @@
           var footer = $('<div class="ita-search-widget-footer"></div>');
           footer.append(buildPaginationDiv(search, total));
           footer.append(buildClearLink());
-          if (options['endpoint'] == 'consolidated_screening_list') {
-            footer.append(buildMoreInfoLink('http://export.gov/ecr/eg_main_023148.asp'));
-          }
           return footer;
         };
 
         function styleResults(payload) {
-          var total = $('<div class="ita-search-widget-total">').text(payload['total'] + ' results');
-          var elements = [total],
+          var elements = [buildTotalDiv(payload['total'])],
             results;
 
           if (payload['total'] > 0) {
@@ -120,6 +116,7 @@
               title: 'the Consolidated Screening List',
               resultTitleField: 'name',
               displayFields: ['name', 'remarks', 'source', 'alt_names'],
+              moreInfoUrl: 'http://export.gov/ecr/eg_main_023148.asp',
               searchUrl: function(search, offset) {
                 offset = offset || 0;
                 var url = host + '/v2/consolidated_screening_list/search' +
@@ -150,6 +147,16 @@
 
         function buildResultsDiv() {
           return $('<div class="ita-search-widget-results"></div>');
+        }
+
+        function buildTotalDiv(total) {
+          var totalDiv = $('<div class="ita-search-widget-total">');
+          var innerHtml = total + ' results';
+          if (options['endpoint'] == 'consolidated_screening_list') {
+            innerHtml = innerHtml + ' - <a target="_blank" href="' + endpointInfo.moreInfoUrl + '">More Info About the Results</a>';
+          }
+          totalDiv.html(innerHtml);
+          return totalDiv;
         }
 
         function buildPaginationDiv(search, total) {
@@ -206,10 +213,6 @@
             widgetContainer.find('.ita-search-widget-results, .ita-search-widget-footer').remove();
           });
           return clearLink;
-        }
-
-        function buildMoreInfoLink(href) {
-          return $('<div class="ita-search-widget-more-info"><a target="_blank" href="' + href + '">More Info About the Results</a></div>');
         }
 
         function buildSpinner() {
