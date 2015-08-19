@@ -241,14 +241,10 @@ $NOTE: #888;
 
     .ita-search-widget-clear {
       height: 24px;
-      float: left;
-      padding: 0 5px 0 10px;
-      &::before {
-        content: "|";
-      }
+      float: right;
+      padding: 0 5px 0 0;
       a {
         color: white;
-        padding: 0 0 0 15px;
       }
     }
   }
