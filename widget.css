@@ -188,6 +188,8 @@
       margin: 0;
       padding: 15px 40px;
       zoom: 1; }
+      .ita-search-widget-container .ita-search-widget-results .ita-search-widget-total a {
+        font-weight: bold; }
     .ita-search-widget-container .ita-search-widget-results ul {
       display: block;
       list-style-type: none;
