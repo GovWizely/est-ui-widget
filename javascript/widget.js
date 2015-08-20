@@ -153,7 +153,7 @@
           var totalDiv = $('<div class="ita-search-widget-total">');
           var innerHtml = total + ' results';
           if (options['endpoint'] == 'consolidated_screening_list') {
-            innerHtml = innerHtml + ' - <a target="_blank" href="' + endpointInfo.moreInfoUrl + '">More Info About the Results</a>';
+            innerHtml = innerHtml + ' - <a target="_blank" href="' + endpointInfo.moreInfoUrl + '">More Information About the Results</a>';
           }
           totalDiv.html(innerHtml);
           return totalDiv;
