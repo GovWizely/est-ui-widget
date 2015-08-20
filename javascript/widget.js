@@ -119,7 +119,7 @@
               moreInfoUrl: 'http://export.gov/ecr/eg_main_023148.asp',
               searchUrl: function(search, offset) {
                 offset = offset || 0;
-                var url = host + '/v2/consolidated_screening_list/search' +
+                var url = host + '/consolidated_screening_list/search' +
                   '?api_key=' + apiKey +
                   (search == '' ? '' : '&fuzzy_name=true&name=' + search) +
                   '&offset=' + offset;
@@ -132,7 +132,7 @@
               displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish'],
               searchUrl: function(search, offset) {
                 offset = offset || 0;
-                var url = host + '/v2/envirotech/solutions/search' +
+                var url = host + '/envirotech/solutions/search' +
                   '?api_key=' + apiKey +
                   (search == '' ? '' : '&q=' + search) +
                   '&offset=' + offset;
