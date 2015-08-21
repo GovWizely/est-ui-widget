@@ -34,8 +34,8 @@ $NOTE: #888;
     background-color: $THEME;
     display: block;
     margin: 0;
-    padding: 5px 5px 10px;
-    width: 590px;
+    padding: 10px 15px;
+    width: 570px;
     p {
       color: $BACKGROUND;
       display: block;
@@ -68,7 +68,7 @@ $NOTE: #888;
       text-shadow: none;
       text-transform: none;
       vertical-align: baseline;
-      width: 70%;
+      width: 388px;
       word-spacing: 0px;
       writing-mode: lr-tb;
       -webkit-writing-mode: horizontal-tb;
@@ -101,7 +101,7 @@ $NOTE: #888;
       text-transform: none;
       vertical-align: baseline;
       white-space: nowrap;
-      width: 25%;
+      width: 172px;
       word-spacing: 0px;
       writing-mode: lr-tb;
     }
@@ -123,7 +123,7 @@ $NOTE: #888;
       height: 24px;
       line-height: 24px;
       margin: 0;
-      padding: 15px 40px;
+      padding: 15px;
       zoom: 1;
       a {
         font-weight: bold;
@@ -134,7 +134,7 @@ $NOTE: #888;
       display: block;
       list-style-type: none;
       margin: 0;
-      padding: 0 40px 15px;
+      padding: 0 30px 15px;
       width: 518px;
 
       li {
@@ -216,13 +216,14 @@ $NOTE: #888;
 
   .ita-search-widget-footer {
     background-color: $THEME;
-    width: 600px;
-    height: 24px;
-    line-height: 24px;
     color: white;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 15px 0 10px;
+    width: 575px;
 
     .ita-search-widget-pagination {
-      height: 24px;
+      height: 26px;
       padding: 0;
       float: left;
 
@@ -240,14 +241,14 @@ $NOTE: #888;
       span.current {
         @include page;
         background-color: darken($THEME, 15%);
-        height: 24px;
+        height: 26px;
       }
     }
 
     .ita-search-widget-clear {
-      height: 24px;
+      height: 26px;
       float: right;
-      padding: 0 5px 0 0;
+      padding: 0;
       a {
         color: white;
       }
