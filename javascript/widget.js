@@ -97,7 +97,7 @@
               $.each(value, function (key, val) {
                 if ($.inArray(key, endpointInfo.displayFields) > -1) {
                   innerTable.append($('<tr>')
-                    .append($('<td>').text(key))
+                    .append($('<td>').text(key.replace('_', ' ')))
                     .append($('<td>').text(val)));
                 }
               });
