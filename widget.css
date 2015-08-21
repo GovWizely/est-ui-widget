@@ -105,8 +105,8 @@
     background-color: #7AC2A1;
     display: block;
     margin: 0;
-    padding: 5px 5px 10px;
-    width: 590px; }
+    padding: 10px 15px;
+    width: 570px; }
     .ita-search-widget-container form p {
       color: white;
       display: block;
@@ -120,6 +120,7 @@
       -webkit-user-select: text;
       background-color: white;
       border: 0;
+      color: #888;
       cursor: auto;
       display: inline-block;
       font-size: 16px;
@@ -132,12 +133,12 @@
       margin: 8px 0 0 0;
       padding: 1px;
       text-align: start;
-      text-indent: 0px;
+      text-indent: 5px;
       text-rendering: auto;
       text-shadow: none;
       text-transform: none;
       vertical-align: baseline;
-      width: 70%;
+      width: 388px;
       word-spacing: 0px;
       writing-mode: lr-tb;
       -webkit-writing-mode: horizontal-tb;
@@ -168,7 +169,7 @@
       text-transform: none;
       vertical-align: baseline;
       white-space: nowrap;
-      width: 25%;
+      width: 172px;
       word-spacing: 0px;
       writing-mode: lr-tb; }
   .ita-search-widget-container .ita-search-widget-results {
@@ -186,7 +187,7 @@
       height: 24px;
       line-height: 24px;
       margin: 0;
-      padding: 15px 40px;
+      padding: 15px;
       zoom: 1; }
       .ita-search-widget-container .ita-search-widget-results .ita-search-widget-total a {
         font-weight: bold; }
@@ -194,7 +195,7 @@
       display: block;
       list-style-type: none;
       margin: 0;
-      padding: 0 40px 15px;
+      padding: 0 30px 15px;
       width: 518px; }
       .ita-search-widget-container .ita-search-widget-results ul li {
         line-height: 24px; }
@@ -253,19 +254,21 @@
               .ita-search-widget-container .ita-search-widget-results ul li table tr td:first-child {
                 word-wrap: break-word;
                 word-break: break-word;
-                width: 140px; }
+                width: 140px;
+                text-transform: capitalize; }
               .ita-search-widget-container .ita-search-widget-results ul li table tr td:nth-child(2) {
                 word-wrap: break-word;
                 word-break: break-word;
                 width: 440px; }
   .ita-search-widget-container .ita-search-widget-footer {
     background-color: #7AC2A1;
-    width: 600px;
-    height: 24px;
-    line-height: 24px;
-    color: white; }
+    color: white;
+    height: 26px;
+    line-height: 26px;
+    padding: 0 15px 0 10px;
+    width: 575px; }
     .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-pagination {
-      height: 24px;
+      height: 26px;
       padding: 0;
       float: left; }
       .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-pagination a {
@@ -281,10 +284,10 @@
         padding: 0 5px;
         width: auto;
         background-color: #4ba47b;
-        height: 24px; }
+        height: 26px; }
     .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-clear {
-      height: 24px;
+      height: 26px;
       float: right;
-      padding: 0 5px 0 0; }
+      padding: 0; }
       .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-clear a {
         color: white; }
