@@ -2,7 +2,7 @@
 
 An HTML widget for Environmental Solutions endpoint.
 
-For instructions on how to embed this widget into your website, [go here](http://govwizely.github.io/est-ui-widget/).
+For instructions on how to embed this widget into your website, [go here](http://govwizely.github.io/search-widgets/).
 
 ## Developers
 
