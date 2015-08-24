@@ -33,7 +33,9 @@
 
       function buildFooter(search, total) {
         var footer = $('<div class="ita-search-widget-footer"></div>');
-        footer.append(buildPaginationDiv(search, total));
+        if (total > 0) {
+          footer.append(buildPaginationDiv(search, total));
+        }
         footer.append(buildClearLink());
         return footer;
       };
@@ -119,7 +121,7 @@
       function buildTotalDiv(total) {
         var totalDiv = $('<div class="ita-search-widget-total">');
         var innerHtml = total + ' results';
-        if (options['endpoint'] == 'consolidated_screening_list') {
+        if (options['endpoint'] == 'consolidated_screening_list' && total > 0) {
           innerHtml = innerHtml + ' - <a target="_blank" href="' + endpointInfo.moreInfoUrl + '">More Information About the Results</a>';
         }
         totalDiv.html(innerHtml);
