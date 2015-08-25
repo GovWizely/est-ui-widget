@@ -1,20 +1,30 @@
-# EST UI widget
+# Search Widgets
 
-An HTML widget for Environmental Solutions endpoint.
+HTML search widgets for various [webservices](https://github.com/GovWizely/webservices) endpoints.
 
 For instructions on how to embed this widget into your website, [go here](http://govwizely.github.io/search-widgets/).
 
 ## Developers
 
-The widget distribution code is built with [BroccoliJS](https://github.com/broccolijs/broccoli). To set Broccoli up:
+You need to have `node` and `npm` installed on your system.
+
+The widget distribution code is built with [BroccoliJS](https://github.com/broccolijs/broccoli). To install Broccoli and all other dependencies:
 
     npm install -g broccoli-cli
-    npm install --save-dev broccoli
-    npm install --save-dev broccoli-uglify-js
-    npm install --save-dev broccoli-concat
-    npm install --save-dev broccoli-sass
-    npm install --save-dev broccoli-merge-trees
+    npm install
 
 Then to serve:
 
     broccoli serve
+
+You can then view your work on http://localhost:4200/example.html
+
+In order to apply your code changes to the gh-pages demo site, run:
+
+    gulp gh-pages
+
+The command will leave you checked out on the gh-pages branch. You can then push to that branch, or make further code adjustments first before doing so. If you'd like to test you work first, run:
+
+    jekyll serve
+
+(you need to install `jekyll` on your system first), then visit http://localhost:4000
