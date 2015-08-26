@@ -110,6 +110,24 @@
               return url;
             },
             buildSearchForm: buildSearchForm
+          },
+          trade_leads: {
+            title: 'Trade Leads',
+            resultTitleField: 'title',
+            displayFields: ['agency', 'topic', 'description', 'source', 'contract_value'],
+            searchUrl: function(search, offset) {
+              offset = offset || 0;
+              var url = host + '/trade_leads/search' +
+                '?api_key=' + apiKey +
+                '&offset=' + offset;
+              $.each(search, function(index, value) {
+                if (value != '') {
+                  url += '&' + index + '=' + value;
+                }
+              });
+              return url;
+            },
+            buildSearchForm: buildSearchFormWithCountry
           }
         };
         return info[endpoint];
@@ -180,12 +198,30 @@
         return searchForm;
       };
 
+      function buildSearchFormWithCountry() {
+        var searchForm = $('<form>' +
+          '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
+          '<input type="text" name="q">' +
+          Utility.countriesSelectBox() +
+          '<input type="submit" id="widget-search" value="Search">' +
+        '</form>');
+
+        searchForm.on('submit', function (e) {
+          e.preventDefault();
+          currentPage = 1;
+          loadData(Utility.parseQueryString($(this).serialize()));
+        });
+        return searchForm;
+      };
+
       function buildClearLink() {
         var clearLink = $('<div class="ita-search-widget-clear"><a href="#">Clear</a></div>');
         clearLink.on('click', function(e) {
           e.preventDefault();
           resultsDiv = false;
           widgetContainer.find('input[name=query]').val("");
+          widgetContainer.find('input[name=q]').val("");
+          widgetContainer.find('select[name=countries]').val("");
           widgetContainer.find('.ita-search-widget-results, .ita-search-widget-footer').remove();
         });
         return clearLink;
