@@ -4,6 +4,7 @@
     $.fn.searchWidget = function (options) {
       var endpointInfo = getEndpointInfo(options['endpoint'])
       var resultsDiv;
+      var currentPage;
 
       var widgetContainer = $(this);
       widgetContainer.addClass('ita-search-widget-container');
@@ -136,7 +137,10 @@
           lapping: 0,
           page: 1,
           onSelect: function (page) {
-            loadData(search, (page - 1) * 10, false);
+            if (currentPage != page) {
+              loadData(search, (page - 1) * 10, false);
+              currentPage = page;
+            }
           },
           onFormat: function (type) {
             switch (type) {
@@ -168,6 +172,7 @@
         '</form>');
         searchForm.on('submit', function (e) {
           e.preventDefault();
+          currentPage = 1;
           loadData(widgetContainer.find('input[name=query]').val());
         });
         return searchForm;
