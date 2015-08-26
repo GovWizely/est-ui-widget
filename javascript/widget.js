@@ -8,7 +8,7 @@
 
       var widgetContainer = $(this);
       widgetContainer.addClass('ita-search-widget-container');
-      widgetContainer.empty().append(buildSearchForm());
+      widgetContainer.empty().append(endpointInfo.buildSearchForm());
 
       function loadData(search, offset, newSearch) {
         offset = typeof offset !== 'undefined' ? offset : 0;
@@ -94,7 +94,8 @@
                 (search == '' ? '' : '&fuzzy_name=true&name=' + search) +
                 '&offset=' + offset;
               return url;
-            }
+            },
+            buildSearchForm: buildSearchForm
           },
           envirotech: {
             title: 'Envirotech Solutions',
@@ -107,7 +108,8 @@
                 (search == '' ? '' : '&q=' + search) +
                 '&offset=' + offset;
               return url;
-            }
+            },
+            buildSearchForm: buildSearchForm
           }
         };
         return info[endpoint];
