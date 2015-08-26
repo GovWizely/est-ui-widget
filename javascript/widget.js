@@ -187,13 +187,13 @@
       function buildSearchForm() {
         var searchForm = $('<form>' +
           '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
-          '<input type="text" name="query">' +
+          '<input type="text" name="q">' +
           '<input type="submit" id="widget-search" value="Search">' +
         '</form>');
         searchForm.on('submit', function (e) {
           e.preventDefault();
           currentPage = 1;
-          loadData(widgetContainer.find('input[name=query]').val());
+          loadData(widgetContainer.find('input[name=q]').val());
         });
         return searchForm;
       };
@@ -219,7 +219,6 @@
         clearLink.on('click', function(e) {
           e.preventDefault();
           resultsDiv = false;
-          widgetContainer.find('input[name=query]').val("");
           widgetContainer.find('input[name=q]').val("");
           widgetContainer.find('select[name=countries]').val("");
           widgetContainer.find('.ita-search-widget-results, .ita-search-widget-footer').remove();
