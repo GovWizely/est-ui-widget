@@ -202,8 +202,8 @@
         var searchForm = $('<form>' +
           '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
           '<input type="text" name="q">' +
-          Utility.countriesSelectBox() +
           '<input type="submit" id="widget-search" value="Search">' +
+          Utility.countriesSelectBox() +
         '</form>');
 
         searchForm.on('submit', function (e) {
