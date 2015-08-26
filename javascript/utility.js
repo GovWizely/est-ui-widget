@@ -25,6 +25,7 @@ var Utility = {
 
   countriesList: {
                    AU: 'Australia',
+                   CA: 'Canada',
                    PK: 'Pakistan',
                    UK: 'United Kingdom',
                    US: 'United States'
