@@ -29,5 +29,12 @@ var Utility = {
                    PK: 'Pakistan',
                    UK: 'United Kingdom',
                    US: 'United States'
-                 }
+                 },
+
+  mergeObjects: function(obj1, obj2) {
+                  $.each(obj2, function(index, value) {
+                    obj1[index] = value;
+                  });
+                  return obj1;
+                }
 };

@@ -8,7 +8,7 @@
 
       var widgetContainer = $(this);
       widgetContainer.addClass('ita-search-widget-container');
-      widgetContainer.empty().append(endpointInfo.buildSearchForm());
+      widgetContainer.empty().append(buildSearchForm());
 
       function loadData(search, offset, newSearch) {
         offset = typeof offset !== 'undefined' ? offset : 0;
@@ -20,7 +20,7 @@
         }
         resultsDiv.empty().append(buildSpinner());
 
-        $.getJSON(endpointInfo.searchUrl(search, offset), function (data) {
+        $.getJSON(searchUrl(search, offset), function (data) {
           // Only run it on first time search, not when navigating between pages.
           if (newSearch) {
             widgetContainer.find('.ita-search-widget-footer').remove();
@@ -78,56 +78,46 @@
         return elements;
       };
 
-      function getEndpointInfo(endpoint) {
+      function searchUrl(search, offset) {
+        offset     = offset || 0;
         var apiKey = options['apiKey'];
-        var host =  options['host'] || 'https://api.govwizely.com';
+        var host   = options['host'] || 'https://api.govwizely.com';
+        var url    = host + endpointInfo['path'] +
+          '?api_key=' + apiKey +
+          '&offset=' + offset;
+        $.each(search, function(index, value) {
+          if (value != '') {
+            url += '&' + index + '=' + value;
+          }
+        });
+        return url;
+      };
+
+      function getEndpointInfo(endpoint) {
         var info = {
           consolidated_screening_list: {
             title: 'the Consolidated Screening List',
             resultTitleField: 'name',
             displayFields: ['name', 'remarks', 'source', 'alt_names'],
             moreInfoUrl: 'http://export.gov/ecr/eg_main_023148.asp',
-            searchUrl: function(search, offset) {
-              offset = offset || 0;
-              var url = host + '/consolidated_screening_list/search' +
-                '?api_key=' + apiKey +
-                (search == '' ? '' : '&fuzzy_name=true&name=' + search) +
-                '&offset=' + offset;
-              return url;
-            },
-            buildSearchForm: buildSearchForm
+            extraParams: {fuzzy_name: "true"},
+            path: '/consolidated_screening_list/search',
+            searchFieldName: 'name'
           },
           envirotech: {
             title: 'Envirotech Solutions',
             resultTitleField: 'name_english',
             displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish'],
-            searchUrl: function(search, offset) {
-              offset = offset || 0;
-              var url = host + '/envirotech/solutions/search' +
-                '?api_key=' + apiKey +
-                (search == '' ? '' : '&q=' + search) +
-                '&offset=' + offset;
-              return url;
-            },
-            buildSearchForm: buildSearchForm
+            extraParams: {},
+            path: '/envirotech/solutions/search',
           },
           trade_leads: {
             title: 'Trade Leads',
             resultTitleField: 'title',
             displayFields: ['agency', 'topic', 'description', 'source', 'contract_value'],
-            searchUrl: function(search, offset) {
-              offset = offset || 0;
-              var url = host + '/trade_leads/search' +
-                '?api_key=' + apiKey +
-                '&offset=' + offset;
-              $.each(search, function(index, value) {
-                if (value != '') {
-                  url += '&' + index + '=' + value;
-                }
-              });
-              return url;
-            },
-            buildSearchForm: buildSearchFormWithCountry
+            extraParams: {},
+            path: '/trade_leads/search',
+            includeCountries: true
           }
         };
         return info[endpoint];
@@ -187,29 +177,18 @@
       function buildSearchForm() {
         var searchForm = $('<form>' +
           '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
-          '<input type="text" name="q">' +
+          '<input type="text" name="' + (endpointInfo.searchFieldName || 'q') + '">' +
           '<input type="submit" id="widget-search" value="Search">' +
-        '</form>');
-        searchForm.on('submit', function (e) {
-          e.preventDefault();
-          currentPage = 1;
-          loadData(widgetContainer.find('input[name=q]').val());
-        });
-        return searchForm;
-      };
-
-      function buildSearchFormWithCountry() {
-        var searchForm = $('<form>' +
-          '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
-          '<input type="text" name="q">' +
-          '<input type="submit" id="widget-search" value="Search">' +
-          Utility.countriesSelectBox() +
+          (endpointInfo.includeCountries ? Utility.countriesSelectBox() : '') +
         '</form>');
 
         searchForm.on('submit', function (e) {
           e.preventDefault();
           currentPage = 1;
-          loadData(Utility.parseQueryString($(this).serialize()));
+          loadData(Utility.mergeObjects(
+              Utility.parseQueryString($(this).serialize()),
+              endpointInfo.extraParams)
+            );
         });
         return searchForm;
       };
