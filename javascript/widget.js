@@ -175,11 +175,20 @@
       }
 
       function buildSearchForm() {
+
+        var inputsHtml = '<input type="text" placeholder="Enter search query" name="' +
+          (endpointInfo.searchFieldName || 'q') + '">';
+        if (endpointInfo.includeCountries) {
+          inputsHtml = '<div class="ita-search-widget-input-wrapper">' +
+            inputsHtml +
+            Utility.countriesSelectBox() +
+            '</div>';
+        }
+
         var searchForm = $('<form>' +
           '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
-          '<input type="text" name="' + (endpointInfo.searchFieldName || 'q') + '">' +
+           inputsHtml +
           '<input type="submit" id="widget-search" value="Search">' +
-          (endpointInfo.includeCountries ? Utility.countriesSelectBox() : '') +
         '</form>');
 
         searchForm.on('submit', function (e) {
