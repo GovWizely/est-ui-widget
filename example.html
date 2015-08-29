@@ -15,10 +15,16 @@
       var apiKey = document.URL.split('?api_key=')[1];
 
       $(document).ready(function ($) {
-        $("#example-widget-id").searchWidget({
+        $("#example-widget-csl").searchWidget({
           apiKey: apiKey,
-          //endpoint: 'consolidated_screening_list'
-          //endpoint: 'envirotech'
+          endpoint: 'consolidated_screening_list'
+        });
+        $("#example-widget-envirotech").searchWidget({
+          apiKey: apiKey,
+          endpoint: 'envirotech'
+        });
+        $("#example-widget-trade-leads").searchWidget({
+          apiKey: apiKey,
           endpoint: 'trade_leads'
         });
       });
@@ -26,6 +32,10 @@
   </head>
   <body>
     <p>Usage: pass your API key to the page via the ?api_key= query parameter.</p>
-    <div id="example-widget-id"></div>
+    <div id="example-widget-csl"></div>
+    <br/><br/>
+    <div id="example-widget-envirotech"></div>
+    <br/><br/>
+    <div id="example-widget-trade-leads"></div>
   </body>
 </html>
