@@ -4,6 +4,7 @@
     $.fn.searchWidget = function (options) {
       var endpointInfo = getEndpointInfo(options['endpoint'])
       var resultsDiv;
+      var currentPage;
 
       var widgetContainer = $(this);
       widgetContainer.addClass('ita-search-widget-container');
@@ -19,7 +20,7 @@
         }
         resultsDiv.empty().append(buildSpinner());
 
-        $.getJSON(endpointInfo.searchUrl(search, offset), function (data) {
+        $.getJSON(searchUrl(search, offset), function (data) {
           // Only run it on first time search, not when navigating between pages.
           if (newSearch) {
             widgetContainer.find('.ita-search-widget-footer').remove();
@@ -77,36 +78,46 @@
         return elements;
       };
 
-      function getEndpointInfo(endpoint) {
+      function searchUrl(search, offset) {
+        offset     = offset || 0;
         var apiKey = options['apiKey'];
-        var host =  options['host'] || 'https://api.govwizely.com';
+        var host   = options['host'] || 'https://api.govwizely.com';
+        var url    = host + endpointInfo['path'] +
+          '?api_key=' + apiKey +
+          '&offset=' + offset;
+        $.each(search, function(index, value) {
+          if (value != '') {
+            url += '&' + index + '=' + value;
+          }
+        });
+        return url;
+      };
+
+      function getEndpointInfo(endpoint) {
         var info = {
           consolidated_screening_list: {
             title: 'the Consolidated Screening List',
             resultTitleField: 'name',
             displayFields: ['name', 'remarks', 'source', 'alt_names'],
             moreInfoUrl: 'http://export.gov/ecr/eg_main_023148.asp',
-            searchUrl: function(search, offset) {
-              offset = offset || 0;
-              var url = host + '/consolidated_screening_list/search' +
-                '?api_key=' + apiKey +
-                (search == '' ? '' : '&fuzzy_name=true&name=' + search) +
-                '&offset=' + offset;
-              return url;
-            }
+            extraParams: {fuzzy_name: "true"},
+            path: '/consolidated_screening_list/search',
+            searchFieldName: 'name'
           },
           envirotech: {
             title: 'Envirotech Solutions',
             resultTitleField: 'name_english',
             displayFields: ['source_id', 'name_chinese', 'name_english', 'name_french', 'name_portuguese', 'name_spanish'],
-            searchUrl: function(search, offset) {
-              offset = offset || 0;
-              var url = host + '/envirotech/solutions/search' +
-                '?api_key=' + apiKey +
-                (search == '' ? '' : '&q=' + search) +
-                '&offset=' + offset;
-              return url;
-            }
+            extraParams: {},
+            path: '/envirotech/solutions/search',
+          },
+          trade_leads: {
+            title: 'Trade Leads',
+            resultTitleField: 'title',
+            displayFields: ['agency', 'topic', 'description', 'source', 'contract_value'],
+            extraParams: {},
+            path: '/trade_leads/search',
+            includeCountries: true
           }
         };
         return info[endpoint];
@@ -136,7 +147,10 @@
           lapping: 0,
           page: 1,
           onSelect: function (page) {
-            loadData(search, (page - 1) * 10, false);
+            if (currentPage != page) {
+              loadData(search, (page - 1) * 10, false);
+              currentPage = page;
+            }
           },
           onFormat: function (type) {
             switch (type) {
@@ -161,14 +175,29 @@
       }
 
       function buildSearchForm() {
+
+        var inputsHtml = '<input type="text" placeholder="Enter search query" name="' +
+          (endpointInfo.searchFieldName || 'q') + '">';
+        if (endpointInfo.includeCountries) {
+          inputsHtml = '<div class="ita-search-widget-input-wrapper">' +
+            inputsHtml +
+            Utility.countriesSelectBox() +
+            '</div>';
+        }
+
         var searchForm = $('<form>' +
           '<p>Search <strong>' + endpointInfo.title + '</strong>:</p>' +
-          '<input type="text" name="query">' +
+           inputsHtml +
           '<input type="submit" id="widget-search" value="Search">' +
         '</form>');
+
         searchForm.on('submit', function (e) {
           e.preventDefault();
-          loadData(widgetContainer.find('input[name=query]').val());
+          currentPage = 1;
+          loadData(Utility.mergeObjects(
+              Utility.parseQueryString($(this).serialize()),
+              endpointInfo.extraParams)
+            );
         });
         return searchForm;
       };
@@ -178,7 +207,8 @@
         clearLink.on('click', function(e) {
           e.preventDefault();
           resultsDiv = false;
-          widgetContainer.find('input[name=query]').val("");
+          widgetContainer.find('input[name=q]').val("");
+          widgetContainer.find('select[name=countries]').val("");
           widgetContainer.find('.ita-search-widget-results, .ita-search-widget-footer').remove();
         });
         return clearLink;

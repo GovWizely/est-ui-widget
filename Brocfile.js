@@ -13,7 +13,7 @@ var jQuery = concat('javascript', {
 });
 
 var appJs = concat('javascript', {
-  inputFiles: ['jquery.paging.js', 'widget.js'],
+  inputFiles: ['utility.js', 'jquery.paging.js', 'widget.js'],
   outputFile: '/widget.js'
 });
 appJs = uglifyJavaScript(appJs);
