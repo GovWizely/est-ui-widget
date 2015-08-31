@@ -16,9 +16,15 @@
     <script>
       $(document).ready(function ($) {
         $("#example-widget-container").searchWidget({
-          apiKey: "BieztMWzm1EGY71oPH1KFpwm",
-          host: 'https://api.trade.gov',
+          apiKey:   'BieztMWzm1EGY71oPH1KFpwm',
+          host:     'https://api.trade.gov',
           endpoint: 'consolidated_screening_list'
+        });
+
+        $("#example-trade-leads-widget-container").searchWidget({
+          apiKey:   'BieztMWzm1EGY71oPH1KFpwm',
+          host:     'https://api.trade.gov',
+          endpoint: 'trade_leads'
         });
       });
     </script>
@@ -34,11 +40,14 @@
     </section>
 
     <section class="main-content">
-      <h2>See the CSL widget in action:</h2>
+      <h2>See the widgets in action:</h2>
+      <h3>CSL Widget</h3>
       <div id="example-widget-container"></div>
+      <h3>Trade Leads Widget</h3>
+      <div id="example-trade-leads-widget-container"></div>
       <br/><br/><br/>
 
-      <h2>Add the CSL widget to your web page:</h2>
+      <h2>Add a widget to your web page:</h2>
       <ol>
         <li>Download the <a href="widget.js">JavaScript</a> and <a href="widget.css">CSS</a> source files and host them on your site.</li>
         <li>Make sure you load jQuery:
@@ -54,11 +63,13 @@
          $(&quot;#example-widget-container&quot;).searchWidget({
                apiKey: &quot;Your API key&quot;, // get it from http://api.trade.gov/
                endpoint: &quot;consolidated_screening_list&quot;
+               // Possible endpoints: &quot;consolidated_screening_list&quot;|&quot;trade_leads&quot;
          });
     });
 &lt;/script&gt;
           </code></pre>
         </li>
+        <li>Endpoint should be set to <code>&quot;consolidated_screening_list&quot;</code> for CSL, or <code>&quot;trade_leads&quot;</code> for Trade Leads Widget.</li>
         <li>Add <code>&lt;div id=&quot;example-widget-container&quot;&gt;&lt;/div&gt;</code> to wherever you wish the widget to appear.</li>
       </ol>
 
