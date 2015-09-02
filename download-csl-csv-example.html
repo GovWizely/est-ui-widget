@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script>
+      $(function() {
+        $('a').on('click', function(e) {
+          e.preventDefault();
+          location.href = $(this).attr('href') + '?api_key=62tGtkpSgNq7bE0GnIv4ajDG';
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <p><a href="https://api.trade.gov/consolidated_screening_list/search.csv">Download CSL CSV</a></p>
+    <p>You can see that when you hover over the link above, the API key cannot be seen. When you click on it, JavaScript adds the key to the URL before the browser follows it.</p>
+  </body>
+</html>
