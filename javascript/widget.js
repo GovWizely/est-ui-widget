@@ -41,6 +41,14 @@
         return footer;
       };
 
+      function getResultTitle(record) {
+        if (typeof(endpointInfo.resultTitleField) == "string") {
+          return record[endpointInfo.resultTitleField];
+        } else {
+          return endpointInfo.resultTitleField(record);
+        }
+      };
+
       function styleResults(payload) {
         var elements = [buildTotalDiv(payload['total'])],
           results;
@@ -49,7 +57,7 @@
           results = $('<ul>');
 
           $.each(payload['results'], function (index, value) {
-            var resultText = value[endpointInfo.resultTitleField];
+            var resultText = getResultTitle(value);
             var collapsible = $('<a>').text(resultText).attr('href', '#');
             var innerTable = $('<table>').hide();
 
@@ -113,7 +121,7 @@
           },
           trade_leads: {
             title: 'Trade Leads',
-            resultTitleField: 'title',
+            resultTitleField: function (val) { return val['title'] || val ['description'] || val['agency']},
             displayFields: ['agency', 'topic', 'description', 'url', 'contact', 'contract_value'],
             extraParams: {},
             path: '/trade_leads/search',
