@@ -114,7 +114,7 @@
           trade_leads: {
             title: 'Trade Leads',
             resultTitleField: 'title',
-            displayFields: ['agency', 'topic', 'description', 'source', 'contract_value'],
+            displayFields: ['agency', 'topic', 'description', 'url', 'contact', 'contract_value'],
             extraParams: {},
             path: '/trade_leads/search',
             includeCountries: true
