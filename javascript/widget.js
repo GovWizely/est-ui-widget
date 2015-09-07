@@ -72,11 +72,20 @@
               .append(collapsible)
               .append(innerTable));
 
-            $.each(value, function (key, val) {
-              if ($.inArray(key, endpointInfo.displayFields) > -1) {
+            $.each(endpointInfo.displayFields, function(i, formatter) {
+              var key, val;
+              if (typeof(formatter) == "string") {
+                key = formatter;
+                val = value[key];
+              } else {
+                key = formatter.key;
+                val = formatter.format(value[key]);
+              }
+
+              if (val) {
                 innerTable.append($('<tr>')
                   .append($('<td>').text(key.replace('_', ' ')))
-                  .append($('<td>').text(val)));
+                  .append($('<td>').html(val)));
               }
             });
           });
@@ -122,7 +131,7 @@
           trade_leads: {
             title: 'Trade Leads',
             resultTitleField: function (val) { return val['title'] || val ['description'] || val['agency']},
-            displayFields: ['agency', 'topic', 'description', 'url', 'contact', 'contract_value'],
+            displayFields: ['agency', 'topic', 'description', WidgetFieldFormatter.format_link('url'), 'contact', 'contract_value'],
             extraParams: {},
             path: '/trade_leads/search',
             includeCountries: true
