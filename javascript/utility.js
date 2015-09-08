@@ -284,7 +284,7 @@ var WidgetFieldFormatter = {
                  return {
                    key: key,
                    format: function(url) {
-                     return '<a href="' + url + '" target="_blank">' + url + '</a>';
+                     return (url ? '<a href="' + url + '" target="_blank">' + url + '</a>' : '');
                    }
                  };
                }
