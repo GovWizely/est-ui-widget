@@ -87,8 +87,11 @@ $NOTE: #888;
         height: 26px;
         width: 132px;
         margin: 0 0 0 2px;
+        font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 14px;
         color: $NOTE;
+        position: relative;
+        top: -1px;
       }
     }
 
