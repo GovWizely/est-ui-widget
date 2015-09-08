@@ -154,8 +154,11 @@
         height: 26px;
         width: 132px;
         margin: 0 0 0 2px;
+        font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-size: 14px;
-        color: #888; }
+        color: #888;
+        position: relative;
+        top: -1px; }
     .ita-search-widget-container form input[type=submit] {
       -webkit-appearance: none;
       -webkit-rtl-ordering: logical;
