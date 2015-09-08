@@ -278,3 +278,14 @@ var Utility = {
                   return obj1;
                 }
 };
+
+var WidgetFieldFormatter = {
+  format_link: function(key) {
+                 return {
+                   key: key,
+                   format: function(url) {
+                     return '<a href="' + url + '" target="_blank">' + url + '</a>';
+                   }
+                 };
+               }
+};
