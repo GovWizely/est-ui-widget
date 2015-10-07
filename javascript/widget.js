@@ -135,6 +135,13 @@
             extraParams: {},
             path: '/trade_leads/search',
             includeCountries: true
+          },
+          trade_events: {
+            title: 'Trade Events',
+            resultTitleField: 'event_name',
+            displayFields: ['event_name', 'event_type', 'description', 'start_date', 'end_date', 'time_zone', 'cost', WidgetFieldFormatter.format_link('registration_link'), WidgetFieldFormatter.format_link('url'), 'contact', 'source'],
+            extraParams: {},
+            path: '/trade_events/search'
           }
         };
         return info[endpoint];
