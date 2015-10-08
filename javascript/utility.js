@@ -287,5 +287,20 @@ var WidgetFieldFormatter = {
                      return (url ? '<a href="' + url + '" target="_blank">' + url + '</a>' : '');
                    }
                  };
-               }
+               },
+  format_json_objects: function(key, names, seperator) {
+    if (names.constructor !== Array) names = Array(names);
+    if (seperator === undefined) seperator = ',';
+    return {
+      key: key,
+      format: function(json_objects) {
+        values = $.map(json_objects, function(json_object) {
+          return $.map(names, function(name) {
+            return json_object[name];
+          });
+        });
+        return values.join(seperator);
+      }
+    };
+  }
 };
