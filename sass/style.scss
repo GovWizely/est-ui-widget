@@ -43,6 +43,9 @@ $NOTE: #888;
       height: 19px;
       margin: 0 0 8px 0;
       width: 590px;
+      strong {
+        color: $BACKGROUND;
+      }
     }
     input[type=text] {
       -webkit-appearance: none;
@@ -88,10 +91,10 @@ $NOTE: #888;
         width: 132px;
         margin: 0 0 0 2px;
         font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
         font-size: 14px;
         color: $NOTE;
         position: relative;
-        top: -1px;
       }
     }
 
