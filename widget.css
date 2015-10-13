@@ -114,6 +114,8 @@
       height: 19px;
       margin: 0 0 8px 0;
       width: 590px; }
+      .ita-search-widget-container form p strong {
+        color: white; }
     .ita-search-widget-container form input[type=text] {
       -webkit-appearance: none;
       -webkit-rtl-ordering: logical;
@@ -155,10 +157,10 @@
         width: 132px;
         margin: 0 0 0 2px;
         font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-weight: 300;
         font-size: 14px;
         color: #888;
-        position: relative;
-        top: -1px; }
+        position: relative; }
     .ita-search-widget-container form input[type=submit] {
       -webkit-appearance: none;
       -webkit-rtl-ordering: logical;
