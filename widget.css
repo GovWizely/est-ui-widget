@@ -97,12 +97,12 @@
   .ita-search-widget-container a {
     cursor: pointer;
     text-decoration: none;
-    color: #7AC2A1; }
+    color: #0851ab; }
     .ita-search-widget-container a:hover,
     .ita-search-widget-container a:active {
       text-decoration: underline; }
   .ita-search-widget-container form {
-    background-color: #7AC2A1;
+    background-color: #0851ab;
     display: block;
     margin: 0;
     padding: 10px 15px;
@@ -122,7 +122,7 @@
       -webkit-user-select: text;
       background-color: white;
       border: 0;
-      color: #888;
+      color: #444;
       cursor: auto;
       display: inline-block;
       font-size: 14px;
@@ -159,7 +159,7 @@
         font-family: Lato, 'Helvetica Neue', Helvetica, Arial, sans-serif;
         font-weight: 300;
         font-size: 14px;
-        color: #888;
+        color: #444;
         position: relative; }
     .ita-search-widget-container form input[type=submit] {
       -webkit-appearance: none;
@@ -168,7 +168,7 @@
       -webkit-user-select: none;
       background-color: white;
       border: 0;
-      color: #7AC2A1;
+      color: #0851ab;
       cursor: pointer;
       display: inline-block;
       font-size: 14px;
@@ -196,7 +196,7 @@
     display: block;
     width: 598px; }
     .ita-search-widget-container .ita-search-widget-results .ita-search-widget-total {
-      color: #888;
+      color: #444;
       display: block;
       font-size: 16px;
       font-style: normal;
@@ -220,7 +220,7 @@
         margin-bottom: 8px; }
         .ita-search-widget-container .ita-search-widget-results ul li a {
           background-color: white;
-          color: #7AC2A1;
+          color: #0851ab;
           display: inline;
           font-size: 16px;
           font-style: normal;
@@ -235,7 +235,7 @@
           background-color: white;
           border: 1px solid #ddd;
           border-width: 0 0 1px 1px;
-          color: #888;
+          color: #444;
           display: table;
           empty-cells: show;
           list-style-type: none;
@@ -249,13 +249,13 @@
           .ita-search-widget-container .ita-search-widget-results ul li table tr {
             display: table-row;
             border-collapse: collapse;
-            color: #888;
+            color: #444;
             vertical-align: middle; }
             .ita-search-widget-container .ita-search-widget-results ul li table tr td {
               background-color: white;
               border: 1px solid #ddd;
               border-width: 1px 1px 0 0;
-              color: #888;
+              color: #444;
               display: table-cell;
               empty-cells: show;
               font-size: 16px;
@@ -280,7 +280,7 @@
                 word-break: break-word;
                 width: 440px; }
   .ita-search-widget-container .ita-search-widget-footer {
-    background-color: #7AC2A1;
+    background-color: #0851ab;
     color: white;
     height: 26px;
     line-height: 26px;
@@ -302,7 +302,7 @@
         float: left;
         padding: 0 5px;
         width: auto;
-        background-color: #4ba47b;
+        background-color: #052e62;
         height: 26px; }
     .ita-search-widget-container .ita-search-widget-footer .ita-search-widget-clear {
       height: 26px;
