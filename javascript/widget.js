@@ -131,7 +131,7 @@
           trade_leads: {
             title: 'Trade Leads',
             resultTitleField: function (val) { return val['title'] || val ['description'] || val['agency']},
-            displayFields: ['agency', 'topic', 'description', WidgetFieldFormatter.format_link('url'), 'contact', 'contract_value'],
+            displayFields: ['agency', 'topic', 'description', WidgetFieldFormatter.format_link('url'), 'contact'],
             extraParams: {},
             path: '/trade_leads/search',
             includeCountries: true
