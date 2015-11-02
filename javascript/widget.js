@@ -143,6 +143,15 @@
             extraParams: {},
             path: '/trade_events/search',
             includeCountries: true
+          },
+          useac_locations: {
+            title: 'USEAC Locations',
+            resultTitleField: function (val) { return val['zip_code'] + ' - ' + val['office_name']; },
+            displayFields: ['zip_code', 'office_name', 'address', 'email', 'phone'],
+            extraParams: {},
+            path: '/ita_zipcode_to_post/search',
+            searchFieldName: 'zip_codes',
+            placeholder: 'Enter ZIP code'
           }
         };
         return info[endpoint];
@@ -201,7 +210,7 @@
 
       function buildSearchForm() {
 
-        var inputsHtml = '<input type="text" placeholder="Enter search query" name="' +
+        var inputsHtml = '<input type="text" placeholder="' + (endpointInfo.placeholder || 'Enter search query') + '" name="' +
           (endpointInfo.searchFieldName || 'q') + '">';
         if (endpointInfo.includeCountries) {
           inputsHtml = '<div class="ita-search-widget-input-wrapper">' +
