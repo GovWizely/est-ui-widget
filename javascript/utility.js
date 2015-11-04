@@ -288,6 +288,14 @@ var WidgetFieldFormatter = {
                    }
                  };
                },
+  format_array: function(key) {
+                 return {
+                   key: key,
+                   format: function(array) {
+                     return array.join('<br/>');
+                   }
+                 };
+               },
   format_json_objects: function(key, names, seperator) {
     if (names.constructor !== Array) names = Array(names);
     if (seperator === undefined) seperator = ',';
