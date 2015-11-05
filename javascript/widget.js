@@ -145,7 +145,7 @@
             includeCountries: true
           },
           useac_locations: {
-            title: 'Export Assistance Center Locations',
+            title: 'Export Assistance Centers',
             resultTitleField: function (val) { return val['zip_code'] + ' - ' + val['office_name']; },
             displayFields: ['zip_code', 'office_name', WidgetFieldFormatter.format_array('address'), 'email', 'phone'],
             extraParams: {},
