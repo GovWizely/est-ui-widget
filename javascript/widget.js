@@ -152,6 +152,13 @@
             path: '/ita_zipcode_to_post/search',
             searchFieldName: 'zip_codes',
             placeholder: 'Enter ZIP code'
+          },
+          ita_office_locations: {
+            title: 'International Office Locations',
+            resultTitleField: function (val) { return val['post']; },
+            displayFields: ['post', WidgetFieldFormatter.format_array('address'), 'email', 'phone'],
+            extraParams: {},
+            path: '/ita_office_locations/search'
           }
         };
         return info[endpoint];
