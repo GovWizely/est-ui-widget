@@ -172,7 +172,8 @@
 
       function buildTotalDiv(total) {
         var totalDiv = $('<div class="ita-search-widget-total">');
-        var innerHtml = total + ' results';
+        var resultsText = (total === 1) ? ' result' : ' results';
+        var innerHtml = total + resultsText;
         if (options['endpoint'] == 'consolidated_screening_list' && total > 0) {
           innerHtml = innerHtml + ' - <a target="_blank" href="' + endpointInfo.moreInfoUrl + '">More Information About the Results</a>';
         }
