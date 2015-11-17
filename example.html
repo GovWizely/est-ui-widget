@@ -15,26 +15,6 @@
       var apiKey = document.URL.split('?api_key=')[1];
 
       $(document).ready(function ($) {
-        $("#example-widget-csl").searchWidget({
-          apiKey: apiKey,
-          endpoint: 'consolidated_screening_list'
-        });
-        $("#example-widget-envirotech").searchWidget({
-          apiKey: apiKey,
-          endpoint: 'envirotech'
-        });
-        $("#example-widget-trade-leads").searchWidget({
-          apiKey: apiKey,
-          endpoint: 'trade_leads'
-        });
-        $("#example-widget-trade-events").searchWidget({
-          apiKey: apiKey,
-          endpoint: 'trade_events'
-        });
-        $("#example-widget-useac-locations").searchWidget({
-          apiKey: apiKey,
-          endpoint: 'useac_locations'
-        });
         $("#example-widget-ita-office-locations").searchWidget({
           apiKey: apiKey,
           endpoint: 'ita_office_locations'

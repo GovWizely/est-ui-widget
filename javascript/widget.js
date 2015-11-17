@@ -158,7 +158,10 @@
             resultTitleField: function (val) { return val['post']; },
             displayFields: ['post', WidgetFieldFormatter.format_array('address'), 'email', 'phone'],
             extraParams: {},
-            path: '/ita_office_locations/search'
+            path: '/ita_office_locations/search',
+            includeCountries: true,
+            searchFieldName: 'city',
+            placeholder: 'Enter city name'
           }
         };
         return info[endpoint];
